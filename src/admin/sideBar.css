@@ -1,16 +1,11 @@
-.background-info {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: var(--bg, #F6F6F6);
-}
-
-.box-left {
+.sideBar {
     width: 230px;
     height: 810px;
     flex-shrink: 0;
     background: var(--white, #FFF);
     box-shadow: 0px 4px 6px 0px rgba(219, 219, 219, 0.50);
+    display: flex;
+    flex-direction: column;
 }
 
 .logo {
@@ -22,14 +17,20 @@
     justify-content: center;
     align-items: center;
     left: 24%;
-    top: 4%;
+    top: 3%;
     object-fit: contain;
 }
 
-.dashboard {
+.dashboard,
+.device,
+.service,
+.number,
+.report,
+.setting {
     position: relative;
-    top: 13%;
+    top: 11%;
     left: 0;
+    height: 50px;
 }
 
 .icon-dashboard {
@@ -52,18 +53,15 @@
     line-height: 24px;
     text-decoration: none;
     left: -12%;
+    top: 13px;
 }
 
-.device {
-    position: relative;
-    left: 0;
-    top: 17%;
-}
+
 
 .device .icon-device {
     position: absolute;
     left: 5%;
-    top: 1.5px;
+    top: 13.5px;
 }
 
 .title-device,
@@ -71,11 +69,7 @@
     left: -17%;
 }
 
-.service {
-    position: relative;
-    top: 21%;
-    left: 0;
-}
+
 
 .title-service {
     left: -16%;
@@ -89,26 +83,16 @@
 .icon-setting-2 {
     position: absolute;
     left: 4%;
-    top: 1.5px;
+    top: 13.5px;
 }
 
-
-.number {
-    position: relative;
-    left: 0;
-    top: 25%;
-}
 
 
 .title-number {
     left: -18%;
 }
 
-.report {
-    position: relative;
-    left: 0;
-    top: 29%;
-}
+
 
 .icon-report {
     left: 5% !important;
@@ -118,15 +102,11 @@
     left: -16%;
 }
 
-.setting {
-    position: relative;
-    left: 0;
-    top: 33%;
-}
+
 
 .icon-setting {
     width: 25px;
-    top: 0;
+    top: 10px;
 }
 
 .icon-setting-2 {
@@ -139,7 +119,7 @@
 
 .logOut {
     position: relative;
-    bottom: -57%;
+    bottom: -37%;
 
 }
 
@@ -169,4 +149,23 @@
     font-weight: 500;
     line-height: 24px;
     top: 80%;
+}
+
+
+.dashboard:hover,
+.service:hover,
+.number:hover,
+.report:hover,
+.setting:hover,
+.device:hover {
+    background: var(--orange-orange-50, #FFF2E7);
+}
+
+.dashboard:hover .title-dashboard,
+.service:hover .title-service,
+.device:hover .title-device,
+.number:hover .title-number,
+.report:hover .title-report,
+.setting:hover .title-setting {
+    color: #FF7506;
 }

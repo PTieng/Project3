@@ -1,0 +1,241 @@
+.background-information {
+    width: 100%;
+    height: 100%;
+    background: var(--bg, #F6F6F6);
+    display: flex;
+    overflow: hidden;
+
+}
+
+.title-information {
+    position: absolute;
+    color: var(--orange-orange-400, #FF9138);
+    font-family: Nunito;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    top: 35%;
+    left: 4%;
+
+}
+
+.box-information-user {
+    position: relative;
+    top: 145%;
+    left: 4%;
+    display: flex;
+    width: 1112px;
+    height: 415px;
+    padding: 40px 24px 54px 24px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    border-radius: 12px;
+    background: var(--white, #FFF);
+    box-shadow: 0px 2px 6px 0px rgba(219, 219, 219, 0.50);
+}
+
+.box-right {
+    position: relative;
+    width: 300px;
+    height: 80px;
+    left: 989px;
+}
+
+.circle {
+    position: absolute;
+    display: flex;
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 32px;
+    background: var(--orange-orange-50, #FFF2E7);
+    top: 35%;
+}
+
+.icon-notification {
+    position: absolute;
+    top: 17%;
+    z-index: 1;
+}
+
+.box-user {
+    position: relative;
+    width: 200px;
+    height: 80px;
+    z-index: 1;
+    right: -20%;
+
+}
+
+.avarta {
+    width: 40px;
+    height: 40px;
+    border-radius: 48px;
+    object-fit: contain;
+    top: 28%;
+    position: relative;
+    right: 43%;
+}
+
+.hello {
+    position: relative;
+    top: -22%;
+    color: var(--gray-gray-300, #7E7D88);
+    font-family: Nunito;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    left: -14%;
+}
+
+.name {
+    color: var(--gray-gray-400-text, #535261);
+    font-family: Nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    position: relative;
+    top: -40%;
+    left: 7%;
+}
+
+.content {
+    width: 100%;
+    height: 80px;
+    position: relative;
+}
+
+
+
+.col-avarta {
+    position: relative;
+    left: -35%;
+    height: 320px;
+}
+
+.infor-avarta {
+    width: 248px;
+    height: 248px;
+    border-radius: 318px;
+    object-fit: contain;
+}
+
+.img-circle {
+    position: absolute;
+    top: 67%;
+    left: 66%;
+}
+
+.camera {
+    position: absolute;
+    top: 69%;
+    left: 69%;
+}
+
+.col-information-1,
+.col-information-2 {
+    position: fixed;
+    width: 295px;
+    height: 321px;
+    left: 44%;
+}
+
+.infor-name-user {
+    position: relative;
+    top: 8%;
+    color: var(--gray-gray-500, #282739);
+    font-family: Nunito;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.row-name-user,
+.row-phone-user,
+.row-email-user,
+.row-id-user,
+.row-password-user,
+.row-role-user {
+    position: relative;
+    left: -30%;
+}
+
+.row-name-user .name,
+.phone,
+.email,
+.id,
+.password,
+.role {
+    position: relative;
+    color: var(--gray-gray-500, #282739);
+    left: 0%;
+    font-family: Nunito;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+
+.row-name-user .text-name,
+.text-phone,
+.text-email,
+.text-id,
+.text-password,
+.text-role {
+    position: relative;
+    left: 30%;
+    top: -8px;
+    display: flex;
+    width: 295px;
+    height: 44px;
+    padding: 12px 16px;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: var(--gray-gray-50, #EAEAEC);
+}
+
+.row-phone-user {
+    top: 4%;
+}
+
+.row-phone-user .phone {
+    left: -4%;
+}
+
+.row-email-user {
+    top: 8%;
+}
+
+.row-email-user .email {
+    left: -12%;
+}
+
+.col-information-2 {
+    left: 67%;
+}
+
+.row-password-user {
+    top: 3%;
+}
+
+.password {
+    left: -6%;
+}
+
+.row-role-user {
+    top: 7.5%;
+}
+
+.role {
+    left: -10%;
+}
