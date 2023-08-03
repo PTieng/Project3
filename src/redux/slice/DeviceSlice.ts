@@ -1,0 +1,49 @@
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { firestore } from "../../Firebase";
+export interface DeviceType {
+  id?: string;
+  idTB: string;
+  name: string;
+  ip: string;
+  type: string;
+  active: string;
+  usedService: string[];
+  userName: string;
+  password: string;
+  connect: string;
+}
+
+interface DeiviceState {
+  devices: DeviceType[];
+}
+
+const initialState: DeiviceState = {
+  devices: [],
+};
+
+export const fetchData = createAsyncThunk("firestore/fetchData", async () => {
+  const collection = await firestore.collection("devices").get();
+  const devices = collection.docs.map((doc) => ({id: doc.id, ...doc.data()}) as DeviceType);
+  return devices;
+});
+
+export const addDevice = createAsyncThunk('device/add', async(device: DeviceType) => {
+  
+  const collection = await firestore.collection('devices').add(device);
+  device.id = collection.id;
+  return device;
+})
+
+const deviceSlice = createSlice({
+  name: "devices",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchData.fulfilled, (state, action) => {
+      state.devices = action.payload;
+    }).addCase(addDevice.fulfilled, (state, action: PayloadAction<DeviceType>) => {
+      state.devices.push(action.payload)
+    })
+  },
+});
+export default deviceSlice.reducer;

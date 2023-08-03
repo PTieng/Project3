@@ -1,0 +1,115 @@
+.background-detailDevice {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.content-detailDevice {
+    position: absolute;
+    left: 15%;
+    top: 114px;
+    width: 85%;
+    height: 85.5%;
+}
+
+.title-detail-device {
+    position: absolute;
+    color: var(--orange-orange-500, #FF7506);
+    font-family: Nunito;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    left: 3%;
+}
+
+.form-detail-device {
+    position: absolute;
+    width: 1112px;
+    height: 553px;
+    border-radius: 16px;
+    background: var(--white, #FFF);
+    box-shadow: 2px 2px 8px 0px rgba(232, 239, 244, 0.80);
+    left: 3%;
+    top: 11%;
+}
+
+.thongTinDevice {
+    position: relative;
+    color: var(--orange-orange-500, #FF7506);
+    font-family: Nunito;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    top: 2%;
+    left: -40%;
+}
+
+.col-detail-device {
+    position: relative;
+    width: 35%;
+    height: 241px;
+    left: 3%;
+    top: 35px;
+}
+
+.detail-id-device {
+    position: relative;
+    width: 100%;
+    height: 30px;
+}
+
+.col-data-detail-device {
+    position: relative;
+    width: 68%;
+    height: 100%;
+    top: -40px;
+    left: 32%;
+}
+
+.idTB-label {
+    position: relative;
+    color: var(--gray-gray-500, #282739);
+    left: -38%;
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.idTB {
+    position: relative;
+    color: var(--gray-gray-400-text, #535261);
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.dichVuSuDung {
+    position: absolute;
+    width: 61%;
+    height: 75px;
+    left: 38px;
+    top: 44%;
+}
+
+.update-device {
+    position: relative;
+    height: 76px;
+    width: 70px;
+    right: -105%;
+    top: -44%;
+}
+
+.btn-update-device {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+}

@@ -1,6 +1,6 @@
 .sideBar {
     width: 230px;
-    height: 810px;
+    height: 100vh;
     flex-shrink: 0;
     background: var(--white, #FFF);
     box-shadow: 0px 4px 6px 0px rgba(219, 219, 219, 0.50);

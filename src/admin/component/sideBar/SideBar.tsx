@@ -1,33 +1,58 @@
 import React from "react";
-import "../admin/sideBar.css";
-import logoAlta from "../images/Logo alta.png";
-import dashboard from "../images/dashboard.png";
-import monitor from "../images/monitor.png";
-import service from "../images/service.png";
-import number from "../images/number.png";
-import report from "../images/report.png";
-import setting from "../images/setting.png";
-import vertical from "../images/fi_more-vertical.png";
-import logOut from "../images/logOut.png";
+import "../../component/sideBar/sideBar.css";
+import logoAlta from "../../../images/Logo alta.png";
+import dashboard from "../../../images/dashboard.png";
+import monitor from "../../../images/monitor.png";
+import service from "../../../images/service.png";
+import number from "../../../images/number.png";
+import report from "../../../images/report.png";
+import setting from "../../../images/setting.png";
+import vertical from "../../../images/fi_more-vertical.png";
+import logOut from "../../../images/logOut.png";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
+  const navigate = useNavigate();
+
+  const handleLinkDashboard = () => {
+    navigate("/admin/dashboard");
+  };
+  const handleLinkDevice = () => {
+    navigate("/admin/device");
+  };
   return (
     <div>
       <div className="sideBar">
         <img src={logoAlta} alt="" className="logo" />
 
-        <div className="dashboard">
+        <div
+          className="dashboard"
+          onClick={handleLinkDashboard}
+          style={{ cursor: "pointer" }}
+        >
           <img src={dashboard} alt="" className="icon-dashboard" />
-          <a href="/admin/dashboard" className="title-dashboard">
+          <p
+            className="title-dashboard"
+            onClick={handleLinkDashboard}
+            style={{ cursor: "pointer" }}
+          >
             Dashboard
-          </a>
+          </p>
         </div>
 
-        <div className="device">
+        <div
+          className="device"
+          onClick={handleLinkDevice}
+          style={{ cursor: "pointer" }}
+        >
           <img src={monitor} alt="" className="icon-device" />
-          <a href="" className="title-device">
+          <p
+            className="title-device"
+            onClick={handleLinkDevice}
+            style={{ cursor: "pointer" }}
+          >
             Thiết bị
-          </a>
+          </p>
         </div>
 
         <div className="service">

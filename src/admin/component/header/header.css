@@ -1,0 +1,59 @@
+.header-main {
+    position: relative;
+    top: 4%;
+    left: 5%;
+}
+
+.ant-breadcrumb-link {
+    color: var(--gray-blue-gray-4-place-holder, #7E7D88);
+    font-family: Nunito;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.ant-breadcrumb-separator {
+    font-size: 18px;
+}
+
+
+.width {
+    width: 100%;
+}
+
+.d-flex .mt-4 {
+    position: relative;
+    left: -13%;
+}
+
+.hello-header {
+    position: relative;
+    color: var(--gray-gray-300, #7E7D88);
+
+    /* 12/12 Reg */
+    font-family: Nunito;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    /* 150% */
+    left: -20%;
+}
+
+.name-header {
+    position: relative;
+    color: var(--gray-gray-400-text, #535261);
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    left: -17%;
+    top: 0%;
+}
+
+.notification-icon {
+    position: relative;
+    top: 5px;
+}

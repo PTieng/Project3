@@ -1,11 +1,11 @@
 import React from "react";
-import SideBar from "./SideBar";
-import "../admin/information.css";
-import avarta from "../images/avarta.avif";
-import circle from "../images/circle-avarta.png";
-import notification from "../images/notification.png";
+import SideBar from "../component/sideBar/SideBar";
+import "../informaton/information.css";
+import avarta from "../../images/avarta.avif";
+import circle from "../../images/circle-avarta.png";
+import notification from "../../images/notification.png";
 
-import camera from "../images/camera.png";
+import camera from "../../images/camera.png";
 const Information = () => {
   return (
     <div>
