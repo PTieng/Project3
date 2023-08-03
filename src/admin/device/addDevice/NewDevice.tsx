@@ -1,27 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../../component/sideBar/SideBar";
 import Header from "../../component/header/Header";
 import "../addDevice/newDevice.css";
 import { Select, Space, Tag } from "antd";
-import { useAppDispatch } from "../../../redux/store/Store";
-import { addDevice } from "../../../redux/slice/DeviceSlice";
-import { useNavigate } from "react-router-dom";
+import { RootState, useAppDispatch } from "../../../redux/store/Store";
+import {
+  addDevice,
+  fetchData,
+  updateDevice,
+} from "../../../redux/slice/DeviceSlice";
+import { useNavigate, useParams } from "react-router-dom";
 import type { CustomTagProps } from "rc-select/lib/BaseSelect";
+import { useSelector } from "react-redux";
 
 const NewDevice = () => {
+  const { id } = useParams<{ id: string }>();
+  const isUpdate = !!id;
+  const dataSelected = useSelector((state: RootState) =>
+    state.devices.devices.find((item) => item.id === id)
+  );
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [data, setData] = useState({
-    
-    idTB: "",
-    name: "",
-    ip: "",
+    idTB: isUpdate ? dataSelected?.idTB || "" : "",
+    name: isUpdate ? dataSelected?.name || "" : "",
+    ip: isUpdate ? dataSelected?.ip || "" : "",
     active: "Hoạt động",
-    type: "",
-    userName: "",
-    password: "",
+    type: isUpdate ? dataSelected?.type || "" : "",
+    userName: isUpdate ? dataSelected?.userName || "" : "",
+    password: isUpdate ? dataSelected?.password || "" : "",
     connect: "Mất kết nối",
-    usedService: [] as string[],
+    usedService: isUpdate ? dataSelected?.usedService || [] : [],
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,6 +83,23 @@ const NewDevice = () => {
     );
   };
 
+  useEffect(() => {
+    if (isUpdate && dataSelected) {
+      setData({
+        idTB: dataSelected.idTB || "",
+        name: dataSelected.name || "",
+        ip: dataSelected.ip || "",
+        active: "Hoạt động",
+        type: dataSelected.type || "",
+        userName: dataSelected.userName || "",
+        password: dataSelected.password || "",
+        connect: "Mất kết nối",
+        usedService: dataSelected.usedService || [],
+      });
+    }
+  }, [isUpdate, dataSelected]);
+  console.log(data);
+
   const handleClick = async () => {
     try {
       if (
@@ -87,11 +113,16 @@ const NewDevice = () => {
       ) {
         return alert("error");
       }
-      await dispatch(addDevice(data));
+      if (isUpdate) {
+        await dispatch(updateDevice({ ...data, id: id }));
+      } else {
+        await dispatch(addDevice(data));
+      }
       navigate("/admin/device");
       console.log(data);
     } catch (err) {}
   };
+
   return (
     <div style={{ overflow: "hidden" }}>
       <div className="background-newDevice">
@@ -100,7 +131,7 @@ const NewDevice = () => {
           firstTitle="Thết bị"
           secondTitle="Danh sách thiết bị"
           firtsPath="/admin/device"
-          thirdTitle="Thêm mới thiết bị"
+          thirdTitle={isUpdate ? "Cập nhật thiết bị" : "Thêm mới thiết bị"}
           secondPath="/admin/device/add"
         />
       </div>
@@ -237,7 +268,7 @@ const NewDevice = () => {
           <div className="form-button-newDevice">
             <button className="btn-cancel-newDevice">Huỷ bỏ</button>
             <button className="btn-create-newDevice" onClick={handleClick}>
-              Thêm thiết bị
+              {isUpdate ? "Cập nhật" : "Thêm mới"}
             </button>
           </div>
         </div>

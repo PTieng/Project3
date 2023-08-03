@@ -7,15 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { DeviceType, fetchData } from "../../redux/slice/DeviceSlice";
 import { RootState } from "../../redux/store/Store";
 import addDevice from "../../images/addDevice.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Device = () => {
-  const handleChange = (value: string) => {
+  const handleChange = (value: string, type: string) => {
     console.log(`selected ${value}`);
+    if (type === "active") {
+      setSelectActive(value);
+    } else if (type === "connect") {
+      setSelectConnect(value);
+    }
   };
 
   const [showAllService, setShowAllService] = useState(false);
-  const [selectedDeviceId, setSelectedDeviceId] = useState<string | null>(null);
-
   const navigate = useNavigate();
 
   const handleShowService = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -46,8 +49,31 @@ const Device = () => {
   };
   const handleDetail = (id?: string) => {
     navigate(`/admin/device/detail/${id}`);
-    console.log(id);
   };
+
+  // select trạng thái
+
+  const [selectActive, setSelectActive] = useState<string>("Tất cả");
+  const [selectConnect, setSelectConnect] = useState<string>("Tất cả");
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
+
+  const filterDevice = devices.filter((device) => {
+    const isSelecteActive =
+      selectActive === "Tất cả" || device.active === selectActive;
+    const isSelectConnect =
+      selectConnect === "Tất cả" || device.connect === selectConnect;
+    const isKeyWord =
+      searchKeyword === "" ||
+      device.idTB.toLowerCase().includes(searchKeyword) ||
+      device.name.toLowerCase().includes(searchKeyword) ||
+      device.ip.toLowerCase().includes(searchKeyword) ||
+      (Array.isArray(device.usedService) &&
+        device.usedService.some((service) =>
+          service.toLowerCase().includes(searchKeyword)
+        ));
+    return isSelecteActive && isSelectConnect && isKeyWord;
+  });
+
   const columns = [
     {
       title: <p className="custom-table-header">ID Thiết bị</p>,
@@ -110,13 +136,17 @@ const Device = () => {
       key: "detial",
       render: (text: string, record: DeviceType) => (
         <>
-          <a
-            href=""
+          <span
             className="text-center"
             onClick={() => handleDetail(record.id)}
+            style={{
+              color: "blue",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
           >
             Chi tiết
-          </a>
+          </span>
         </>
       ),
     },
@@ -124,10 +154,18 @@ const Device = () => {
       title: " ",
       dataIndex: "update",
       key: "update",
-      render: (text: string) => (
-        <Link to="" className="text-center">
+      render: (text: string, record: DeviceType) => (
+        <span
+          className="text-center"
+          onClick={() => navigate(`/admin/device/add/${record.id}`)}
+          style={{
+            color: "blue",
+            textDecoration: "underline",
+            cursor: "pointer",
+          }}
+        >
           Cập nhật
-        </Link>
+        </span>
       ),
     },
   ];
@@ -151,11 +189,11 @@ const Device = () => {
                   className="select-hoatDong"
                   defaultValue="Tất cả"
                   style={{ width: 250 }}
-                  onChange={handleChange}
+                  onChange={(value) => handleChange(value, "active")}
                   options={[
-                    { value: "tất Cả", label: "Tất cả" },
-                    { value: "hoạt động", label: "Hoạt động" },
-                    { value: "ngưng hoạt động", label: "Ngưng hoạt động" },
+                    { value: "Tất cả", label: "Tất cả" },
+                    { value: "Hoạt động", label: "Hoạt động" },
+                    { value: "Ngưng hoạt động", label: "Ngưng hoạt động" },
                   ]}
                 />
               </Space>
@@ -169,11 +207,11 @@ const Device = () => {
                   className="select-hoatDong"
                   defaultValue="Tất cả"
                   style={{ width: 250 }}
-                  onChange={handleChange}
+                  onChange={(value) => handleChange(value, "connect")}
                   options={[
-                    { value: "tất Cả", label: "Tất cả" },
-                    { value: "kết nối", label: "kết nối" },
-                    { value: "mất kết nối", label: "mất kết nối" },
+                    { value: "Tất cả", label: "Tất cả" },
+                    { value: "Kết nối", label: "Kết nối" },
+                    { value: "Mất kết nối", label: "Mất kết nối" },
                   ]}
                 />
               </Space>
@@ -187,6 +225,7 @@ const Device = () => {
                 type="text"
                 className="input-search-device"
                 placeholder="Nhập từ khoá"
+                onChange={(e) => setSearchKeyword(e.target.value)}
               />
             </div>
           </div>
@@ -195,7 +234,7 @@ const Device = () => {
           <div className="table-antd-device">
             <Table
               columns={columns}
-              dataSource={devices}
+              dataSource={filterDevice}
               pagination={{ pageSize: 2 }}
               bordered
             />

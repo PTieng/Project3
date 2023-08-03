@@ -23,7 +23,7 @@ const DetailDevice = () => {
   const navigate = useNavigate();
 
   const handleuUpdateDevice = () => {
-    navigate(`/admin/device/update/${id}`);
+    navigate(`/admin/device/add/${id}`);
   };
   return (
     <div>

@@ -8,7 +8,6 @@ import Dashboard from "../admin/dashboard/Dashboard";
 import Device from "../admin/device/Device";
 import NewDevice from "../admin/device/addDevice/NewDevice";
 import DetailDevice from "../admin/device/detail/DetailDevice";
-import UpdateDevice from "../admin/device/update/UpdateDevice";
 const MyRoute = () => {
   return (
     <div>
@@ -20,8 +19,8 @@ const MyRoute = () => {
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/device" element={<Device />} />
         <Route path="/admin/device/add" element={<NewDevice />} />
+        <Route path="/admin/device/add/:id" element={<NewDevice />} />
         <Route path="/admin/device/detail/:id" element={<DetailDevice />} />
-        <Route path="/admin/device/update/:id" element={<UpdateDevice />} />
       </Routes>
     </div>
   );
