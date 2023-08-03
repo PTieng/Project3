@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import "../../component/sideBar/sideBar.css";
 import logoAlta from "../../../images/Logo alta.png";
 import dashboard from "../../../images/dashboard.png";
@@ -10,6 +10,7 @@ import setting from "../../../images/setting.png";
 import vertical from "../../../images/fi_more-vertical.png";
 import logOut from "../../../images/logOut.png";
 import { useNavigate } from "react-router-dom";
+import { Button, Popover } from "antd";
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -20,6 +21,25 @@ const SideBar = () => {
   const handleLinkDevice = () => {
     navigate("/admin/device");
   };
+  const handleLinkService = () => {
+    navigate("/admin/service");
+  };
+
+  const [showArrow, setShowArrow] = useState(true);
+  const [arrowAtCenter, setArrowAtCenter] = useState(false);
+
+  const mergedArrow = useMemo(() => {
+    if (arrowAtCenter) return { pointAtCenter: true };
+    return showArrow;
+  }, [showArrow, arrowAtCenter]);
+  const buttonWidth = 70;
+  const content = (
+    <div>
+      <p style={{ cursor: "pointer" }}>Quản lý vai trò</p>
+      <p style={{ cursor: "pointer" }}>Quản lý tài khoản</p>
+      <p style={{ cursor: "pointer" }}>Nhật ký người dùng</p>
+    </div>
+  );
   return (
     <div>
       <div className="sideBar">
@@ -55,7 +75,7 @@ const SideBar = () => {
           </p>
         </div>
 
-        <div className="service">
+        <div className="service" onClick={handleLinkService}>
           <img src={service} alt="" className="icon-service" />
           <a href="" className="title-service">
             Dịch vụ
@@ -78,10 +98,21 @@ const SideBar = () => {
 
         <div className="setting">
           <img src={setting} alt="" className="icon-setting" />
-          <a href="" className="title-setting">
-            Cài đặt hệ thống
-          </a>
+
           <img src={vertical} alt="" className="icon-setting-2" />
+        </div>
+        <div
+          style={{
+            marginLeft: buttonWidth,
+            clear: "both",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <Popover placement="bottomLeft" content={content} arrow={mergedArrow}>
+            <a href="" className="title-setting">
+              Cài đặt hệ thống
+            </a>
+          </Popover>
         </div>
 
         <div className="logOut">

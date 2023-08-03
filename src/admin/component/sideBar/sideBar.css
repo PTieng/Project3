@@ -114,7 +114,8 @@
 }
 
 .title-setting {
-    left: -1%;
+    left: -23%;
+    top: 49px;
 }
 
 .logOut {
@@ -167,5 +168,9 @@
 .number:hover .title-number,
 .report:hover .title-report,
 .setting:hover .title-setting {
+    color: #FF7506;
+}
+
+.title-setting:hover {
     color: #FF7506;
 }

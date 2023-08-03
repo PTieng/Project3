@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SideBar from "../component/sideBar/SideBar";
 import "../device/device.css";
 import Header from "../component/header/Header";
-import { Badge, Select, Space, Table } from "antd";
+import { Badge, Button, Popover, Select, Space, Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { DeviceType, fetchData } from "../../redux/slice/DeviceSlice";
 import { RootState } from "../../redux/store/Store";
@@ -21,19 +21,43 @@ const Device = () => {
   const [showAllService, setShowAllService] = useState(false);
   const navigate = useNavigate();
 
-  const handleShowService = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    setShowAllService(true);
-  };
+  // const handleShowService = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  //   e.preventDefault();
+  //   setShowAllService(true);
+  // };
 
   const dispatch: any = useDispatch();
+
   const devices = useSelector((state: RootState) => state.devices.devices);
+
   const renderUsedService = (usedServices: string[] | string) => {
     if (Array.isArray(usedServices)) {
-      if (showAllService) {
+      if (usedServices.length <= 2 || showAllService) {
         return usedServices.join(", ");
       } else {
-        return usedServices.slice(0, 2).join(", ");
+        const truncatedServices = usedServices.slice(0, 2).join(", ");
+        const remainingServices = usedServices.join(", ");
+        return (
+          <>
+            {truncatedServices} {usedServices.length > 2 && "... "}
+            <Popover
+              placement="top"
+              content={remainingServices}
+              trigger="click"
+            >
+              <br />
+              <span
+                style={{
+                  color: "blue",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+              >
+                Xem thêm
+              </span>
+            </Popover>
+          </>
+        );
       }
     } else {
       return usedServices;
@@ -119,15 +143,7 @@ const Device = () => {
       dataIndex: "usedService",
       key: "usedService",
       render: (text: string[]) => (
-        <p className="text-left">
-          {renderUsedService(text)}
-          <br />
-          {!showAllService && text.length > 2 && (
-            <a href="" onClick={handleShowService}>
-              Xem thêm
-            </a>
-          )}
-        </p>
+        <p className="text-left">{renderUsedService(text)}</p>
       ),
     },
     {
@@ -175,7 +191,7 @@ const Device = () => {
       <div className="background-device">
         <SideBar />
         <Header
-          firstTitle="Thết bị"
+          firstTitle="Thiết bị"
           secondTitle="Danh sách thiết bị"
           firtsPath="/admin/device"
         />
@@ -235,7 +251,7 @@ const Device = () => {
             <Table
               columns={columns}
               dataSource={filterDevice}
-              pagination={{ pageSize: 2 }}
+              pagination={{ pageSize: 4 }}
               bordered
             />
           </div>

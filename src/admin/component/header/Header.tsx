@@ -4,6 +4,7 @@ import notification from "../../../images/notification2.png";
 import avarta from "../../../images/avarta.avif";
 import "../../component/header/header.css";
 import { useNavigate } from "react-router-dom";
+
 type Props = {
   firstTitle: string;
   secondTitle: string;
@@ -18,6 +19,45 @@ const Header = (props: Props) => {
   const handleInfor = () => {
     navigate("/admin/information");
   };
+
+  const breadcrumbItems = [
+    {
+      title: props.firstTitle,
+      style: { color: props.thirdTitle ? "defaultColor" : "#FF7506" },
+    },
+    {
+      title: (
+        <a
+          href={props.firtsPath}
+          style={{
+            textDecoration: "none",
+            color: props.thirdTitle ? "defaultColor" : "#FF7506",
+            background: "none",
+          }}
+        >
+          {props.secondTitle}
+        </a>
+      ),
+    },
+  ];
+
+  if (props.thirdTitle) {
+    breadcrumbItems.push({
+      title: (
+        <a
+          href={props?.secondPath}
+          style={{
+            textDecoration: "none",
+            color: "#FF7506",
+            background: "none",
+          }}
+        >
+          {props.thirdTitle}
+        </a>
+      ),
+    });
+  }
+
   return (
     <div
       className="width d-flex justify-content-between "
@@ -27,39 +67,7 @@ const Header = (props: Props) => {
         <Breadcrumb
           separator=">"
           className="header-main"
-          items={[
-            {
-              title: props.firstTitle,
-            },
-            {
-              title: (
-                <a
-                  href={props.firtsPath}
-                  style={{
-                    textDecoration: "none",
-                    color: "#FF7506",
-                    background: "none",
-                  }}
-                >
-                  {props.secondTitle}
-                </a>
-              ),
-            },
-            {
-              title: (
-                <a
-                  href={props?.secondPath}
-                  style={{
-                    textDecoration: "none",
-                    color: "#FF7506",
-                    background: "none",
-                  }}
-                >
-                  {props.thirdTitle}
-                </a>
-              ),
-            },
-          ]}
+          items={breadcrumbItems}
         />
       </div>
 

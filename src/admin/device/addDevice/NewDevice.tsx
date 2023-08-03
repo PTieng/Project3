@@ -4,11 +4,9 @@ import Header from "../../component/header/Header";
 import "../addDevice/newDevice.css";
 import { Select, Space, Tag } from "antd";
 import { RootState, useAppDispatch } from "../../../redux/store/Store";
-import {
-  addDevice,
-  fetchData,
-  updateDevice,
-} from "../../../redux/slice/DeviceSlice";
+import { message } from "antd";
+
+import { addDevice, updateDevice } from "../../../redux/slice/DeviceSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import type { CustomTagProps } from "rc-select/lib/BaseSelect";
 import { useSelector } from "react-redux";
@@ -22,7 +20,7 @@ const NewDevice = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [data, setData] = useState({
-    idTB: isUpdate ? dataSelected?.idTB || "" : "",
+    idTB: isUpdate ? (dataSelected ? dataSelected.idTB : "") : "",
     name: isUpdate ? dataSelected?.name || "" : "",
     ip: isUpdate ? dataSelected?.ip || "" : "",
     active: "Hoạt động",
@@ -82,22 +80,18 @@ const NewDevice = () => {
       </Tag>
     );
   };
-
+  const handleCancel = () => {
+    navigate("/admin/device");
+  };
   useEffect(() => {
     if (isUpdate && dataSelected) {
       setData({
-        idTB: dataSelected.idTB || "",
-        name: dataSelected.name || "",
-        ip: dataSelected.ip || "",
-        active: "Hoạt động",
-        type: dataSelected.type || "",
-        userName: dataSelected.userName || "",
-        password: dataSelected.password || "",
-        connect: "Mất kết nối",
+        ...dataSelected,
         usedService: dataSelected.usedService || [],
       });
     }
   }, [isUpdate, dataSelected]);
+
   console.log(data);
 
   const handleClick = async () => {
@@ -111,8 +105,9 @@ const NewDevice = () => {
         !data.password ||
         !data.ip
       ) {
-        return alert("error");
+        return message.error("Vui lòng nhập đầy đủ thông tin");
       }
+
       if (isUpdate) {
         await dispatch(updateDevice({ ...data, id: id }));
       } else {
@@ -122,13 +117,15 @@ const NewDevice = () => {
       console.log(data);
     } catch (err) {}
   };
+  console.log("data.idTB:", data.idTB);
+  console.log("dataSelected?.idTB:", dataSelected?.idTB);
 
   return (
     <div style={{ overflow: "hidden" }}>
       <div className="background-newDevice">
         <SideBar />
         <Header
-          firstTitle="Thết bị"
+          firstTitle="Thiết bị"
           secondTitle="Danh sách thiết bị"
           firtsPath="/admin/device"
           thirdTitle={isUpdate ? "Cập nhật thiết bị" : "Thêm mới thiết bị"}
@@ -266,7 +263,9 @@ const NewDevice = () => {
             </div>
           </div>
           <div className="form-button-newDevice">
-            <button className="btn-cancel-newDevice">Huỷ bỏ</button>
+            <button className="btn-cancel-newDevice" onClick={handleCancel}>
+              Huỷ bỏ
+            </button>
             <button className="btn-create-newDevice" onClick={handleClick}>
               {isUpdate ? "Cập nhật" : "Thêm mới"}
             </button>

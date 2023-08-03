@@ -25,6 +25,7 @@ const DetailDevice = () => {
   const handleuUpdateDevice = () => {
     navigate(`/admin/device/add/${id}`);
   };
+
   return (
     <div>
       <div className="background-detailDevice">
@@ -110,7 +111,7 @@ const DetailDevice = () => {
                   className="idTB text-left"
                   style={{ marginLeft: "4px", marginTop: "-30px" }}
                 >
-                  {device?.usedService}
+                  {device?.usedService && device?.usedService.join(", ")}
                 </p>
               </div>
             </div>
