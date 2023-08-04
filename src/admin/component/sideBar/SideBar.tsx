@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import "../../component/sideBar/sideBar.css";
 import logoAlta from "../../../images/Logo alta.png";
 import dashboard from "../../../images/dashboard.png";
@@ -10,7 +10,6 @@ import setting from "../../../images/setting.png";
 import vertical from "../../../images/fi_more-vertical.png";
 import logOut from "../../../images/logOut.png";
 import { useNavigate } from "react-router-dom";
-import { Button, Popover } from "antd";
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -24,22 +23,16 @@ const SideBar = () => {
   const handleLinkService = () => {
     navigate("/admin/service");
   };
+  const [showArrow, setShowArrow] = useState(false);
 
-  const [showArrow, setShowArrow] = useState(true);
-  const [arrowAtCenter, setArrowAtCenter] = useState(false);
+  const handleSettingMouseEnter = () => {
+    setShowArrow(true);
+  };
 
-  const mergedArrow = useMemo(() => {
-    if (arrowAtCenter) return { pointAtCenter: true };
-    return showArrow;
-  }, [showArrow, arrowAtCenter]);
-  const buttonWidth = 70;
-  const content = (
-    <div>
-      <p style={{ cursor: "pointer" }}>Quản lý vai trò</p>
-      <p style={{ cursor: "pointer" }}>Quản lý tài khoản</p>
-      <p style={{ cursor: "pointer" }}>Nhật ký người dùng</p>
-    </div>
-  );
+  const handleSettingMouseLeave = () => {
+    setShowArrow(false);
+  };
+
   return (
     <div>
       <div className="sideBar">
@@ -75,11 +68,13 @@ const SideBar = () => {
           </p>
         </div>
 
-        <div className="service" onClick={handleLinkService}>
+        <div
+          className="service"
+          onClick={handleLinkService}
+          style={{ cursor: "pointer" }}
+        >
           <img src={service} alt="" className="icon-service" />
-          <a href="" className="title-service">
-            Dịch vụ
-          </a>
+          <p className="title-service">Dịch vụ</p>
         </div>
 
         <div className="number">
@@ -95,24 +90,30 @@ const SideBar = () => {
             Báo cáo
           </a>
         </div>
-
-        <div className="setting">
-          <img src={setting} alt="" className="icon-setting" />
-
-          <img src={vertical} alt="" className="icon-setting-2" />
-        </div>
         <div
-          style={{
-            marginLeft: buttonWidth,
-            clear: "both",
-            whiteSpace: "nowrap",
-          }}
+          className="box-setting-hide-sidebar"
+          onMouseEnter={handleSettingMouseEnter}
+          onMouseLeave={handleSettingMouseLeave}
         >
-          <Popover placement="bottomLeft" content={content} arrow={mergedArrow}>
+          <div className="setting">
+            <img src={setting} alt="" className="icon-setting" />
             <a href="" className="title-setting">
               Cài đặt hệ thống
             </a>
-          </Popover>
+            <img src={vertical} alt="" className="icon-setting-2" />
+          </div>
+
+          <div className={`box-hide-sidebar ${showArrow ? "show" : ""}`}>
+            <div className="row-box-hide-sidebar">
+              <p className="text-box-hide-sidebar">Quản lý vai trò</p>
+            </div>
+            <div className="row-box-hide-sidebar">
+              <p className="text-box-hide-sidebar">Quản lý tài khoản</p>
+            </div>
+            <div className="row-box-hide-sidebar">
+              <p className="text-box-hide-sidebar">Nhật ký người dùng</p>
+            </div>
+          </div>
         </div>
 
         <div className="logOut">

@@ -114,14 +114,13 @@
 }
 
 .title-setting {
-    left: -23%;
-    top: 49px;
+    left: 0%;
+    top: 13px;
 }
 
 .logOut {
     position: relative;
-    bottom: -37%;
-
+    bottom: -35%;
 }
 
 .icon-logOut {
@@ -173,4 +172,61 @@
 
 .title-setting:hover {
     color: #FF7506;
+}
+
+.box-setting-hide-sidebar {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    top: 90px;
+}
+
+.setting {
+    position: relative;
+    top: 0;
+}
+
+.box-hide-sidebar {
+    position: relative;
+    width: 145px;
+    height: 125px;
+    left: 100%;
+    z-index: 1;
+    top: -95%;
+    background: var(--white, #FFF);
+    border-radius: 5px;
+}
+
+.row-box-hide-sidebar {
+    position: relative;
+    height: 40px;
+    width: 100%;
+
+}
+
+
+.text-box-hide-sidebar {
+    position: relative;
+    color: var(--gray-gray-300, #7E7D88);
+    font-family: Nunito;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    top: 7px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.box-hide-sidebar {
+    display: none;
+}
+
+.box-hide-sidebar.show {
+    display: block;
+}
+
+.active-link {
+    background-color: #FF7506;
+    color: #FFFFFF;
 }
