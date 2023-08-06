@@ -1,8 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../detail/detailService.css";
 import SideBar from "../../component/sideBar/SideBar";
 import Header from "../../component/header/Header";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/store/Store";
+import {
+  ServiceType,
+  fetchDataService,
+} from "../../../redux/slice/ServiceSlice";
+import update from "../../../images/updateService.png";
+import { CaretRightOutlined } from "@ant-design/icons";
+import { Badge, DatePicker, DatePickerProps, Select, Table } from "antd";
+import search from "../../../images/search-icon.png";
+import prev from "../../../images/prev.png";
 const DetailService = () => {
+  const { id } = useParams<{ id: string }>();
+  const dispatch: any = useDispatch();
+  const [service, setService] = useState<ServiceType>();
+  const data = useSelector((state: RootState) => state.services.services);
+  useEffect(() => {
+    const detail = data.find((item) => item.id === id);
+    dispatch(fetchDataService());
+    setService(detail);
+  }, [id, data]);
+
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
+    console.log(date, dateString);
+  };
+
+  const columns = [
+    {
+      title: <p className="custom-table-header">Số thứ tự</p>,
+      dataIndex: "stt",
+      key: "stt",
+    },
+
+    {
+      title: <p className="custom-table-header">Trạng thái</p>,
+      dataIndex: "activeService",
+      key: "activeService",
+      render: (text: any, record: ServiceType) => {
+        if (record.activeService === "Hoạt động")
+          return <Badge status="success" text={record.activeService}></Badge>;
+
+        if (record.activeService === "Ngưng hoạt động")
+          return <Badge status="error" text={record.activeService}></Badge>;
+      },
+    },
+  ];
+
   return (
     <div>
       <div className="background-detail-service" style={{ display: "flex" }}>
@@ -26,7 +76,7 @@ const DetailService = () => {
                   <p className="madichvu-detail-service">Mã dịch vụ:</p>
                 </div>
                 <div className="col-row-madichvu2">
-                  <p className="data-detail-service">ándlnsaln</p>
+                  <p className="data-detail-service">{service?.idService}</p>
                 </div>
               </div>
               <div className="row-madichvu ">
@@ -34,7 +84,7 @@ const DetailService = () => {
                   <p className="madichvu-detail-service">Tên dịch vụ:</p>
                 </div>
                 <div className="col-row-madichvu2">
-                  <p className="data-detail-service">ándlnsaln</p>
+                  <p className="data-detail-service">{service?.name}</p>
                 </div>
               </div>
               <div className="row-madichvu">
@@ -42,7 +92,7 @@ const DetailService = () => {
                   <p className="madichvu-detail-service">Mô tả:</p>
                 </div>
                 <div className="col-row-madichvu2">
-                  <p className="data-detail-service">ándlnsaln</p>
+                  <p className="data-detail-service">{service?.description}</p>
                 </div>
               </div>
               <div className="row-quyTacCapSo-detail-service mt-2">
@@ -105,7 +155,88 @@ const DetailService = () => {
                 </div>
               </div>
             </div>
-            <div className="col-detail-service-right"></div>
+            <div className="col-detail-service-right">
+              <div
+                className="row-select-detail-service"
+                style={{ display: "flex" }}
+              >
+                <div className="col-select-active-detail-service">
+                  <p className="title-trangThai">Trạng thái</p>
+                  <Select
+                    className="select-active-detail-service-1"
+                    defaultValue="Tất cả"
+                    style={{ width: 160 }}
+                    onChange={handleChange}
+                    options={[
+                      { value: "Tất cả", label: "Tất cả" },
+                      { value: "Đã hoàn thành", label: "Đã hoàn thành" },
+                      { value: "Đã thực hiện ", label: "Đã thực hiện  " },
+                      { value: "Vắng ", label: "Vắng" },
+                    ]}
+                  />
+                </div>
+                <div
+                  className="col-select-active-detail-service2"
+                  style={{ width: "38%" }}
+                >
+                  <p className="title-trangThai">Chọn thời gian</p>
+                  <div style={{ display: "flex" }}>
+                    <DatePicker
+                      onChange={onChange}
+                      className="start-date-detail-service"
+                    />
+                    <CaretRightOutlined />
+                    <DatePicker
+                      onChange={onChange}
+                      className="start-date-detail-service "
+                    />
+                  </div>
+                </div>
+                <div
+                  className="col-select-active-detail-service3"
+                  style={{ width: "35%" }}
+                >
+                  <p className="title-trangThai">Từ khoá</p>
+                  <input
+                    type="text"
+                    className="search-key-detail-service"
+                    placeholder="Nhập từ khoá"
+                  />
+                  <button className="btn-search-detail-service">
+                    <img
+                      src={search}
+                      alt=""
+                      className="search-icon-detal-service"
+                    />
+                  </button>
+                </div>
+              </div>
+              <div className="table-detail-service">
+                <Table
+                  columns={columns}
+                  pagination={{ pageSize: 4 }}
+                  bordered
+                />
+              </div>
+            </div>
+            <div className="col-button-update-prev">
+              <button className="btn-update-detail-service">
+                <img
+                  src={update}
+                  alt=""
+                  style={{ width: 70 }}
+                  className="img-btn-update-detail-service"
+                />
+              </button>
+              <button className="btn-update-detail-service2">
+                <img
+                  src={prev}
+                  alt=""
+                  style={{ width: 70 }}
+                  className="img-btn-update-detail-service2"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>

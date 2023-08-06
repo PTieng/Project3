@@ -148,10 +148,123 @@
 .col-detail-service-right {
     position: relative;
     height: 95%;
-    width: 60%;
+    width: 58%;
     left: 5%;
     top: 33px;
     border-radius: 12px;
     background: var(--white, #FFF);
     box-shadow: 2px 2px 8px 0px rgba(232, 239, 244, 0.80);
+}
+
+.row-select-detail-service {
+    position: relative;
+    height: 70px;
+    width: 90%;
+    left: 5%;
+}
+
+
+.col-select-active-detail-service,
+.col-select-active-detail-service2,
+.col-select-active-detail-service3 {
+    position: relative;
+
+    width: 25%;
+    height: 100%;
+}
+
+.select-active-detail-service-1 {
+    position: relative;
+    top: -10px;
+    left: -5px;
+    text-align: left;
+
+}
+
+.col-select-active-detail-service .title-trangThai,
+.col-select-active-detail-service2 .title-trangThai,
+.col-select-active-detail-service3 .title-trangThai {
+    position: relative;
+    color: var(--gray-gray-500, #282739);
+    text-align: left;
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.col-select-active-detail-service .start-date-detail-service,
+.col-select-active-detail-service2 .start-date-detail-service {
+    position: relative;
+    top: -10px;
+    left: -1px;
+    width: 115px;
+}
+
+.col-select-active-detail-service3 {
+    left: 2%;
+}
+
+.search-key-detail-service {
+    position: relative;
+    display: flex;
+    width: 205px;
+    height: 35.153px;
+    padding: 10px 16px 10px 12px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    border: 1.5px solid var(--gray-gray-100, #D4D4D7);
+    background: var(--white, #FFF);
+    top: -13px;
+    outline: none;
+}
+
+.btn-search-detail-service {
+    position: relative;
+    top: -65%;
+    left: 27%;
+    border: none;
+    background: var(--white, #FFF);
+}
+
+.table-detail-service {
+    position: relative;
+    top: 15px;
+    height: 410px;
+    width: 86%;
+    left: 5%;
+}
+
+.col-button-update-prev {
+    position: relative;
+    height: 196px;
+    width: 92px;
+    right: -65px;
+    top: 10%;
+}
+
+.btn-update-detail-service,
+.btn-update-detail-service2 {
+    position: relative;
+    height: 45%;
+    width: 81%;
+    left: 5%;
+    border: none;
+
+}
+
+.img-btn-update-detail-service,
+.img-btn-update-detail-service2 {
+    position: relative;
+    left: -9%;
+}
+
+.img-btn-update-detail-service2 {
+    top: -4px;
+}
+
+.btn-update-detail-service2 {
+    height: 30%;
 }

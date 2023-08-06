@@ -11,6 +11,12 @@ import DetailDevice from "../admin/device/detail/DetailDevice";
 import Service from "../admin/service/Service";
 import AddService from "../admin/service/add/AddService";
 import DetailService from "../admin/service/detail/DetailService";
+import CapSo from "../admin/capSo/CapSo";
+import User from "../admin/user/User";
+import VaiTro from "../admin/vaiTro/VaiTro";
+import BaoCao from "../admin/baoCao/BaoCao";
+import AddUpdateAccount from "../admin/account/addUpdate/AddUpdateAccount";
+import Account from "../admin/account/Account";
 const MyRoute = () => {
   return (
     <div>
@@ -29,6 +35,14 @@ const MyRoute = () => {
         <Route path="/admin/service/add/:id" element={<AddService />} />
         <Route path="/admin/service/detail/:id" element={<DetailService />} />
         <Route path="/admin/service/detail" element={<DetailService />} />
+        <Route path="/admin/capso" element={<CapSo />} />
+
+        <Route path="/admin/account" element={<Account />} />
+        <Route path="/admin/account/add/:id" element={<AddUpdateAccount />} />
+        <Route path="/admin/account/add" element={<AddUpdateAccount />} />
+        <Route path="/admin/user" element={<User />} />
+        <Route path="/admin/vaitro" element={<VaiTro />} />
+        <Route path="/admin/baocao" element={<BaoCao />} />
       </Routes>
     </div>
   );

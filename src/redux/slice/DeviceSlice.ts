@@ -47,6 +47,7 @@ export const updateDevice = createAsyncThunk(
   }
 );
 
+
 const deviceSlice = createSlice({
   name: "devices",
   initialState,

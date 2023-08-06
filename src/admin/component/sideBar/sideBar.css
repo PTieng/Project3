@@ -195,27 +195,50 @@
     top: -95%;
     background: var(--white, #FFF);
     border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    /* Thêm hiệu ứng chuyển đổi màu */
+
 }
 
-.row-box-hide-sidebar {
+
+
+.row-box-hide-sidebar,
+.row-box-hide-sidebar2,
+.row-box-hide-sidebar3 {
     position: relative;
     height: 40px;
     width: 100%;
 
 }
 
+.row-box-hide-sidebar:hover,
+.row-box-hide-sidebar2:hover,
+.row-box-hide-sidebar3:hover {
+    background: var(--orange-orange-50, #FFF2E7);
+    color: #FF7506;
+}
 
-.text-box-hide-sidebar {
+
+.text-box-hide-sidebar,
+.text-box-hide-sidebar2,
+.text-box-hide-sidebar3 {
     position: relative;
     color: var(--gray-gray-300, #7E7D88);
     font-family: Nunito;
-    font-size: 15px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 24px;
+    text-decoration: none;
     top: 7px;
     text-align: left;
     padding-left: 10px;
+}
+
+.text-box-hide-sidebar:hover,
+.text-box-hide-sidebar2:hover,
+.text-box-hide-sidebar3:hover {
+    color: #FF7506;
 }
 
 .box-hide-sidebar {
@@ -228,5 +251,51 @@
 
 .active-link {
     background-color: #FF7506;
+    color: #FFFFFF;
+}
+
+.dashboard.active {
+    background: var(--orange-orange-500, #FF7506);
+    color: #FFFFFF;
+}
+
+.device.active {
+    background: var(--orange-orange-500, #FF7506);
+    color: #FFFFFF;
+}
+
+.service.active {
+    background: var(--orange-orange-500, #FF7506);
+    color: #FFFFFF;
+}
+
+.number.active,
+.row-box-hide-sidebar:active,
+.row-box-hide-sidebar2,
+.row-box-hide-sidebar3 {
+    background: var(--orange-orange-500, #FF7506);
+    color: #FFFFFF;
+}
+
+.sideBar .active p {
+    color: #FFFFFF;
+}
+
+/* Vô hiệu hóa hover cho các NavLink đã active */
+.sideBar .dashboard.active:hover,
+.sideBar .device.active:hover,
+.sideBar .service.active:hover,
+.sideBar .number.active:hover,
+.sideBar .report.active:hover,
+.sideBar .setting.active:hover {
+    color: #FFFFFF;
+}
+
+.sideBar .dashboard.active p:hover,
+.sideBar .device.active p:hover,
+.sideBar .service.active p:hover,
+.sideBar .number.active p:hover,
+.sideBar .report.active p:hover,
+.sideBar .setting.active p:hover {
     color: #FFFFFF;
 }

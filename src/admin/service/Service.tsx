@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../service/service.css";
 import SideBar from "../component/sideBar/SideBar";
 import Header from "../component/header/Header";
@@ -28,6 +28,9 @@ const Service = () => {
   const handleAdd = () => {
     navigate("/admin/service/add");
   };
+
+  const [selectActive, setSelectActive] = useState<string>("Tất cả");
+  const [searchKeyword, setSearchKeyword] = useState<string>("")
 
   const columns = [
     {

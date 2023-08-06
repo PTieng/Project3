@@ -1,0 +1,99 @@
+.content-account {
+    position: absolute;
+    left: 15%;
+    height: 82%;
+    width: 82%;
+    top: 17%;
+}
+
+.title-account-content-account {
+    position: relative;
+    color: var(--orange-orange-500, #FF7506);
+    font-family: Nunito;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    text-align: left;
+    left: 2%;
+}
+
+.content-main-account {
+    position: relative;
+    top: 20px;
+    height: 540px;
+    width: 1220px;
+    left: 2%;
+}
+
+.row-select-account {
+    position: relative;
+    height: 100px;
+    width: 100%;
+    top: -20px;
+}
+
+.col-select-vaitro,
+.col-select-vaitro2 {
+    position: relative;
+    height: 100%;
+    width: 50%;
+}
+
+.title-col-select-vaitro {
+    position: relative;
+    color: var(--gray-gray-500, #282739);
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+}
+
+.selcet-vaitro-account {
+    position: relative;
+    left: -33%;
+    text-align: left;
+}
+
+.col-select-vaitro2 {
+    left: 10%;
+    width: 30%;
+}
+
+.search-keyword-account {
+    position: relative;
+    display: flex;
+    width: 300px;
+    height: 44px;
+    padding: 10px 16px 10px 12px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    border: 1.5px solid var(--gray-gray-100, #D4D4D7);
+    background: var(--white, #FFF);
+    outline: none;
+}
+
+.table-account {
+    position: absolute;
+    height: 80%;
+    width: 95%;
+    top: 80px;
+}
+
+.btn-add-userAccount {
+    position: relative;
+    width: 81px;
+    height: 100px;
+    top: -63%;
+    border: none;
+    right: -615px;
+}
+
+.img-add-user {
+    position: relative;
+    left: -13px;
+    top: -4px;
+}
