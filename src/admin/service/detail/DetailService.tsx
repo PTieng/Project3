@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../detail/detailService.css";
 import SideBar from "../../component/sideBar/SideBar";
 import Header from "../../component/header/Header";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/Store";
 import {
@@ -15,6 +15,7 @@ import { Badge, DatePicker, DatePickerProps, Select, Table } from "antd";
 import search from "../../../images/search-icon.png";
 import prev from "../../../images/prev.png";
 const DetailService = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const dispatch: any = useDispatch();
   const [service, setService] = useState<ServiceType>();
@@ -52,6 +53,14 @@ const DetailService = () => {
       },
     },
   ];
+
+  const handleCancel = () => {
+    navigate("/admin/service");
+  };
+
+  const handleDetail = (id?: string) => {
+    navigate(`/admin/service/detail/${id}`);
+  };
 
   return (
     <div>
@@ -220,7 +229,10 @@ const DetailService = () => {
               </div>
             </div>
             <div className="col-button-update-prev">
-              <button className="btn-update-detail-service">
+              <button
+                className="btn-update-detail-service"
+                onClick={() => handleDetail}
+              >
                 <img
                   src={update}
                   alt=""
@@ -228,7 +240,10 @@ const DetailService = () => {
                   className="img-btn-update-detail-service"
                 />
               </button>
-              <button className="btn-update-detail-service2">
+              <button
+                className="btn-update-detail-service2"
+                onClick={handleCancel}
+              >
                 <img
                   src={prev}
                   alt=""

@@ -17,6 +17,8 @@ import VaiTro from "../admin/vaiTro/VaiTro";
 import BaoCao from "../admin/baoCao/BaoCao";
 import AddUpdateAccount from "../admin/account/addUpdate/AddUpdateAccount";
 import Account from "../admin/account/Account";
+import DetailCapSo from "../admin/capSo/detail/DetailCapSo";
+import AddCapSo from "../admin/capSo/add/AddCapSo";
 const MyRoute = () => {
   return (
     <div>
@@ -36,6 +38,9 @@ const MyRoute = () => {
         <Route path="/admin/service/detail/:id" element={<DetailService />} />
         <Route path="/admin/service/detail" element={<DetailService />} />
         <Route path="/admin/capso" element={<CapSo />} />
+        <Route path="/admin/capso/detail/:id" element={<DetailCapSo />} />
+
+        <Route path="/admin/capso/add" element={<AddCapSo />} />
 
         <Route path="/admin/account" element={<Account />} />
         <Route path="/admin/account/add/:id" element={<AddUpdateAccount />} />

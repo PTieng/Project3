@@ -6,7 +6,10 @@ import circle from "../../images/circle-avarta.png";
 import notification from "../../images/notification.png";
 
 import camera from "../../images/camera.png";
+import { UserType } from "../../redux/slice/UserSlice";
 const Information = () => {
+  const dataAccount = localStorage.getItem("account");
+  const account: UserType = dataAccount ? JSON.parse(dataAccount) : {};
   return (
     <div>
       <div className="background-information">
@@ -22,7 +25,7 @@ const Information = () => {
               <div className="box-user">
                 <img src={avarta} alt="" className="avarta" />
                 <p className="hello">Hello</p>
-                <p className="name">Lê Phước Tiếng</p>
+                <p className="name">{account.name}</p>
               </div>
             </div>
           </div>
@@ -33,7 +36,7 @@ const Information = () => {
                 <img src={circle} alt="" className="img-circle" />
                 <img src={camera} alt="" className="camera" />
               </div>
-              <p className="infor-name-user">Lê Phước Tiếng</p>
+              <p className="infor-name-user">{account.name}</p>
             </div>
 
             <div className="col-information-1">
@@ -41,16 +44,16 @@ const Information = () => {
                 <p className="name">Tên người dùng</p>
                 <input
                   type="text"
-                  placeholder="Lê Phước Tiếng"
                   className="text-name"
                   disabled
+                  value={account.name}
                 />
               </div>
               <div className="row-phone-user">
                 <p className="phone">Số điện thoại</p>
                 <input
                   type="text"
-                  placeholder="0123456789"
+                  value={account.phone}
                   className="text-phone"
                   disabled
                 />
@@ -59,7 +62,7 @@ const Information = () => {
                 <p className="email">Email</p>
                 <input
                   type="email"
-                  placeholder="tieng@gmail.com"
+                  value={account.email}
                   className="text-email"
                   disabled
                 />
@@ -70,7 +73,7 @@ const Information = () => {
                 <p className="id">Tên đăng nhập</p>
                 <input
                   type="text"
-                  placeholder="tienglp"
+                  value={account.userName}
                   className="text-id"
                   disabled
                 />
@@ -79,7 +82,7 @@ const Information = () => {
                 <p className="password">Mật khẩu</p>
                 <input
                   type="text"
-                  placeholder="123456"
+                  value={account.password}
                   className="text-password"
                   disabled
                 />
@@ -89,7 +92,7 @@ const Information = () => {
                 <p className="role">Vai trò</p>
                 <input
                   type="text"
-                  placeholder="Kế toán"
+                  value={account.vaiTro}
                   className="text-role"
                   disabled
                 />

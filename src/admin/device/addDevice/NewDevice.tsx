@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import SideBar from "../../component/sideBar/SideBar";
 import Header from "../../component/header/Header";
 import "../addDevice/newDevice.css";
-import { Select, Space, Tag } from "antd";
+import { Select, Space} from "antd";
 import { RootState, useAppDispatch } from "../../../redux/store/Store";
 import { message } from "antd";
 
 import { addDevice, updateDevice } from "../../../redux/slice/DeviceSlice";
 import { useNavigate, useParams } from "react-router-dom";
-import type { CustomTagProps } from "rc-select/lib/BaseSelect";
 import { useSelector } from "react-redux";
+import { Option } from "antd/es/mentions";
 
 const NewDevice = () => {
   const { id } = useParams<{ id: string }>();
@@ -53,33 +53,10 @@ const NewDevice = () => {
     }));
   };
 
-  const options = [
-    { value: "Khám tim mạch" },
-    { value: "Khám sản phụ khoa" },
-    { value: "Khám răng hàm mặt" },
-    { value: "Khám tai mũi họng" },
-    { value: "Khám hô hấp" },
-    { value: "Khám tổng quát" },
-  ];
+  const services = useSelector((state: RootState) => state.services.services);
 
-  const tagRender = (props: CustomTagProps) => {
-    const { label, value, closable, onClose } = props;
-    const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
-      event.preventDefault();
-      event.stopPropagation();
-    };
-    return (
-      <Tag
-        color={value}
-        onMouseDown={onPreventMouseDown}
-        closable={closable}
-        onClose={onClose}
-        style={{ marginRight: 3 }}
-      >
-        {label}
-      </Tag>
-    );
-  };
+  console.log(services);
+
   const handleCancel = () => {
     navigate("/admin/device");
   };
@@ -244,18 +221,29 @@ const NewDevice = () => {
                 />
               </div>
             </div>
-            <div className="from-input-service-newDevice">
-              <p className="label-service-newDevice">
-                Dịch vụ sử dụng:<span className="dauSao">*</span>{" "}
+            <div
+              className="from-input-service-newDevice"
+              style={{ marginTop: "15px" }}
+            >
+              <p
+                className="label-service-newDevice"
+                style={{ marginTop: "-15px" }}
+              >
+                Dịch vụ sử dụng:<span className="dauSao">*</span>
               </p>
               <Select
                 mode="multiple"
-                tagRender={tagRender}
-                style={{ width: "100%", color: "black" }}
-                options={options}
+                className="select-hoatDong-newDevice"
+                style={{ width: "100%", color: "black", marginTop: "25px" }}
                 onChange={handleSelectChangeService}
                 value={data.usedService}
-              />
+              >
+                {services.map((service) => (
+                  <Option key={service.name} value={service.name}>
+                    {service.name}
+                  </Option>
+                ))}
+              </Select>
               <p className="label-luuY-newDevice">
                 <span className="dauSaoLuY me-2">*</span> Là trường thông tin
                 bắt buộc

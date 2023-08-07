@@ -1,0 +1,95 @@
+.content-capSo {
+    position: absolute;
+    top: 136px;
+    height: 80%;
+    width: 75%;
+    left: 15%;
+}
+
+.title-capso {
+    position: relative;
+    color: var(--orange-orange-500, #FF7506);
+    font-family: Nunito;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    text-align: left;
+    left: 2%;
+}
+
+.row-select-capso {
+    position: relative;
+    top: -5px;
+    height: 80px;
+    width: 100%;
+    left: 2%;
+}
+
+.col-select-capSo {
+    position: relative;
+    width: 15%;
+    height: 100%;
+}
+
+.title-col-select-capSo {
+    position: relative;
+    color: var(--gray-gray-500, #282739);
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    left: 2%;
+}
+
+.select-name-service-capso {
+    position: relative;
+    width: 100%;
+    text-align: left;
+}
+
+.search-keywork-capso {
+    position: relative;
+    display: flex;
+    width: 208px;
+    height: 39px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    border: 1.5px solid var(--gray-gray-100, #D4D4D7);
+    background: var(--white, #FFF);
+    top: -6px;
+    outline: none;
+    padding-left: 15px;
+    padding-right: 30px;
+}
+
+.btn-search-icon-capso {
+    position: relative;
+    top: -40px;
+    left: 51%;
+    border: none;
+    background-color: #FFF;
+}
+
+.row-table-capso {
+    position: relative;
+    top: 7px;
+    height: 72%;
+    width: 100%;
+    left: 2%;
+}
+
+.add-capso {
+    position: absolute;
+    top: 23%;
+    width: 95px;
+    height: 106px;
+    align-items: center;
+    left: 105%;
+    border: none;
+    background-color: rgb(246, 246, 246);
+    ;
+}

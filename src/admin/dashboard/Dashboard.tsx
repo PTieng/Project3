@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SideBar from "../component/sideBar/SideBar";
 import "../dashboard/dashboard.css";
 import avarta from "../../images/avarta.avif";
@@ -11,18 +11,31 @@ import soDangCho from "../../images/soDaDung.png";
 import soBoQua from "../../images/daBoQua.png";
 import cYellow from "../../images/c-yellow.png";
 import cGrey from "../../images/c-grey.png";
-import device from "../../images/device.png";
+import deviceImg from "../../images/device.png";
 import service from "../../images/service.png";
 import cBlue from "../../images/c-blue.png";
 import capSo from "../../images/capSO.png";
 import cRed from "../../images/c-red.png";
 import { useNavigate } from "react-router-dom";
+import { UserType } from "../../redux/slice/UserSlice";
+import { UseAppSelector, useAppDispatch } from "../../redux/store/Store";
+import { fetchData } from "../../redux/slice/DeviceSlice";
 const Dashboard = () => {
   const navigate = useNavigate();
 
   const handleInfor = () => {
     navigate("/admin/information");
   };
+
+  const dataAccount = localStorage.getItem("account");
+  const account: UserType = dataAccount ? JSON.parse(dataAccount) : {};
+
+  const dispatch = useAppDispatch();
+  const device = UseAppSelector((state) => state.devices.devices);
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
   return (
     <div>
       <div className="background-dashboard">
@@ -142,7 +155,7 @@ const Dashboard = () => {
                     onClick={handleInfor}
                     style={{ cursor: "pointer" }}
                   >
-                    Lê Phước Tiếng
+                    {account.name}
                   </p>
                 </div>
               </div>
@@ -154,7 +167,7 @@ const Dashboard = () => {
                     <p className="number-device-dashboard">4.000</p>
                     <div className="row-img-device-dashboard">
                       <img
-                        src={device}
+                        src={deviceImg}
                         alt=""
                         className="img-device-dashboard"
                       />

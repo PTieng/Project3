@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SideBar from "../component/sideBar/SideBar";
 import "../device/device.css";
 import Header from "../component/header/Header";
-import { Badge, Button, Popover, Select, Space, Table } from "antd";
+import { Badge, Popover, Select, Space, Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { DeviceType, fetchData } from "../../redux/slice/DeviceSlice";
 import { RootState } from "../../redux/store/Store";
@@ -20,11 +20,6 @@ const Device = () => {
 
   const [showAllService, setShowAllService] = useState(false);
   const navigate = useNavigate();
-
-  // const handleShowService = (e: React.MouseEvent<HTMLAnchorElement>) => {
-  //   e.preventDefault();
-  //   setShowAllService(true);
-  // };
 
   const dispatch: any = useDispatch();
 

@@ -10,8 +10,11 @@ import { ServiceType, fetchDataService } from "../../redux/slice/ServiceSlice";
 import addService from "../../images/addService.png";
 
 const Service = () => {
-  const handleChange = (value: string) => {
+  const handleChange = (value: string, serviceActive: string) => {
     console.log(`selected ${value}`);
+    if (serviceActive === "activeService") {
+      setSelectActive(value);
+    }
   };
   const navigate = useNavigate();
   const { RangePicker } = DatePicker;
@@ -30,7 +33,18 @@ const Service = () => {
   };
 
   const [selectActive, setSelectActive] = useState<string>("Tất cả");
-  const [searchKeyword, setSearchKeyword] = useState<string>("")
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
+
+  const filterService = services.filter((services) => {
+    const isSelecteActive =
+      selectActive === "Tất cả" || services.activeService === selectActive;
+    const isSearchKeyword =
+      searchKeyword === "" ||
+      services.name.toLowerCase().includes(searchKeyword) ||
+      services.idService.toLowerCase().includes(searchKeyword) ||
+      services.description.toLowerCase().includes(searchKeyword);
+    return isSelecteActive && isSearchKeyword;
+  });
 
   const columns = [
     {
@@ -120,7 +134,7 @@ const Service = () => {
                   className="select-hoatDong-service"
                   defaultValue="Tất cả"
                   style={{ width: 250 }}
-                  onChange={handleChange}
+                  onChange={(value) => handleChange(value, "activeService")}
                   options={[
                     { value: "Tất cả", label: "Tất cả" },
                     { value: "Hoạt động", label: "Hoạt động" },
@@ -158,6 +172,7 @@ const Service = () => {
                 style={{ marginTop: "22px" }}
                 className="input-search-device"
                 placeholder="Nhập từ khoá"
+                onChange={(e) => setSearchKeyword(e.target.value)}
               />
             </div>
           </div>
@@ -167,9 +182,9 @@ const Service = () => {
           >
             <Table
               columns={columns}
-              pagination={{ pageSize: 4 }}
+              pagination={{ pageSize: 5 }}
               bordered
-              dataSource={services}
+              dataSource={filterService}
             />
           </div>
           <div

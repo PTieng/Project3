@@ -4,6 +4,7 @@ import notification from "../../../images/notification2.png";
 import avarta from "../../../images/avarta.avif";
 import "../../component/header/header.css";
 import { useNavigate } from "react-router-dom";
+import { UserType } from "../../../redux/slice/UserSlice";
 
 type Props = {
   firstTitle: string;
@@ -19,7 +20,8 @@ const Header = (props: Props) => {
   const handleInfor = () => {
     navigate("/admin/information");
   };
-
+  const dataAccount = localStorage.getItem("account");
+  const account: UserType = dataAccount ? JSON.parse(dataAccount) : {};
   const breadcrumbItems = [
     {
       title: props.firstTitle,
@@ -93,7 +95,7 @@ const Header = (props: Props) => {
               style={{ cursor: "pointer" }}
               onClick={handleInfor}
             >
-              Lê Phước Tiếng
+              {account.name}
             </p>
           </div>
         </div>

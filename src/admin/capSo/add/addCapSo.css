@@ -1,0 +1,192 @@
+.content-add-capso {
+    position: absolute;
+    top: 140px;
+    left: 15%;
+    height: 80%;
+    width: 80%;
+
+}
+
+.title-add-capso {
+    position: relative;
+    text-align: left;
+    left: 2%;
+    color: var(--orange-orange-500, #FF7506);
+    font-family: Nunito;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+.box-add-capso {
+    position: relative;
+    top: 10px;
+    width: 100%;
+    height: 85%;
+    left: 2%;
+    border-radius: 16px;
+    background: var(--white, #FFF);
+    box-shadow: 2px 2px 8px 0px rgba(232, 239, 244, 0.80);
+}
+
+.form-add-capso {
+    position: relative;
+    height: 55%;
+    width: 30%;
+    left: 35%;
+    top: 15%;
+}
+
+.title-form-add-capso {
+    position: relative;
+    color: var(--orange-orange-500, #FF7506);
+    font-family: Nunito;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px;
+}
+
+.name-form-add-capso {
+    position: relative;
+    color: var(--gray-gray-400-text, #535261);
+    font-family: Nunito;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.row-button-add-capso {
+    position: relative;
+    width: 80%;
+    height: 20%;
+    left: 12%;
+    top: 25px;
+}
+
+
+.cancel-capso {
+    position: relative;
+    display: flex;
+    width: 115px;
+    height: 48px;
+    padding: 10px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    border: 1.5px solid var(--orange-orange-400, #FF9138);
+    background: var(--orange-orange-50, #FFF2E7);
+    box-shadow: 0px 0px 6px 0px #E7E9F2;
+    color: var(--orange-orange-400, #FF9138);
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.in-capso {
+    position: relative;
+    display: flex;
+    width: 115px;
+    height: 48px;
+    padding: 10px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    background: var(--orange-orange-400, #FF9138);
+    box-shadow: 0px 0px 6px 0px #E7E9F2;
+    color: var(--white, #FFF);
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+    left: 8%;
+    top: 0px;
+}
+
+.box-model-in-capso {
+    position: relative;
+    width: 373px;
+    height: 365px;
+    border-radius: 24px;
+    top: -89%;
+    background-color: #FFF;
+    left: -1%;
+    display: none;
+}
+
+.soDuocCap {
+    position: relative;
+    color: var(--gray-gray-400-text, #535261);
+    font-family: Nunito;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px;
+    top: 4%;
+}
+
+.data-capso {
+    position: relative;
+    color: var(--orange-orange-500, #FF7506);
+    font-family: Nunito;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 60px;
+    top: 2%;
+}
+
+.vd-service {
+    position: relative;
+    color: var(--gray-gray-500, #282739);
+    font-family: Nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    top: 2%;
+}
+
+.footer-model-inso {
+    position: relative;
+    width: 100%;
+    height: 25%;
+    background: var(--orange-orange-400, #FF9138);
+    display: inline-flex;
+    padding: 16px 67px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    top: 10%;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.col-timeCap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 5px;
+}
+
+.box-model-in-capso.visible {
+    display: block;
+}
+
+.btn-close-modal {
+    position: relative;
+    z-index: 1;
+    top: -83%;
+    left: 40%;
+    border: none;
+    background: #FFF;
+}
