@@ -1,0 +1,61 @@
+.content-vaitro {
+    position: absolute;
+    left: 15%;
+    height: 80%;
+    width: 80%;
+    top: 17%;
+}
+
+.title-vaitro {
+    position: relative;
+    color: var(--orange-orange-500, #FF7506);
+    font-family: Nunito;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    text-align: left;
+    left: 2%;
+}
+
+.content-main-vaitro {
+    position: relative;
+    width: 100%;
+    height: 80%;
+    left: 2%;
+}
+
+.row-search-keyword-vaitro {
+    position: relative;
+    width: 20%;
+    height: 10%;
+    top: -10px;
+    left: 82%;
+
+}
+
+.title-search-row-search-keyword-vaito {
+    position: relative;
+    color: var(--gray-gray-500, #282739);
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+}
+
+.input-search-row-search-keyword-vaitro {
+    position: relative;
+    display: flex;
+    width: 213px;
+    height: 40px;
+    padding: 10px 16px 10px 12px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    border: 1.5px solid var(--gray-gray-100, #D4D4D7);
+    background: var(--white, #FFF);
+    top: -10px;
+    outline: none;
+}

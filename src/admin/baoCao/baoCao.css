@@ -32,3 +32,38 @@
     height: 80%;
     left: 2%;
 }
+
+:where(.css-dev-only-do-not-override-txh9fw).ant-table-wrapper .ant-table-thead>tr>th,
+:where(.css-dev-only-do-not-override-txh9fw).ant-table-wrapper .ant-table-thead>tr>td {
+    position: relative;
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: 600;
+    text-align: start;
+    background: #FF9138;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s ease;
+}
+
+:where(.css-dev-only-do-not-override-txh9fw).ant-table-wrapper .ant-table-thead>tr>th,
+:where(.css-dev-only-do-not-override-txh9fw).ant-table-wrapper .ant-table-tbody>tr>th,
+:where(.css-dev-only-do-not-override-txh9fw).ant-table-wrapper .ant-table-tbody>tr>td,
+:where(.css-dev-only-do-not-override-txh9fw).ant-table-wrapper tfoot>tr>th,
+:where(.css-dev-only-do-not-override-txh9fw).ant-table-wrapper tfoot>tr>td {
+    position: relative;
+    padding: 13px 16px;
+    overflow-wrap: break-word;
+}
+
+.ant-table-content tr:nth-child(even) {
+    background-color: #FFF2E7;
+}
+
+:where(.css-dev-only-do-not-override-txh9fw).ant-pagination .ant-pagination-item-active {
+    font-weight: 600;
+    background-color: #FF7506;
+}
+
+:where(.css-dev-only-do-not-override-txh9fw).ant-pagination .ant-pagination-item-active {
+
+    border-color: #FF7506;
+}

@@ -10,6 +10,7 @@ export interface UserType {
   userName: string;
   vaiTro: string;
   active: string;
+  desc?: string;
 }
 
 interface UserState {

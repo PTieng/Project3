@@ -60,7 +60,7 @@ const AddCapSo = () => {
 
     const newCapSo = {
       serviceName: selectedService,
-      stt: String(stt),
+      stt: Number(stt),
       active: random,
       dateCap: new Date().toISOString(),
       hsd: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),

@@ -4,15 +4,14 @@ import Header from "../../component/header/Header";
 import "../addUpdate/addupdateAccount.css";
 import { Select, message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../../redux/store/Store";
+import { UseAppSelector, useAppDispatch } from "../../../redux/store/Store";
 import { addUser, updateUser } from "../../../redux/slice/UserSlice";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 const AddUpdateAccount = () => {
   const { id } = useParams<{ id: string }>();
   const isUpdate = !!id;
 
-  const dataSelected = useSelector((state: RootState) =>
+  const dataSelected = UseAppSelector((state) =>
     state.users.users.find((item) => item.id === id)
   );
 
@@ -40,6 +39,7 @@ const AddUpdateAccount = () => {
 
   const handleChang = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setData((prevValue) => ({
       ...prevValue,
       [name]: value,
@@ -66,10 +66,6 @@ const AddUpdateAccount = () => {
       });
     }
   }, [isUpdate, dataSelected]);
-
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
 
   const handleClick = async () => {
     try {

@@ -4,7 +4,7 @@ import SideBar from "../../component/sideBar/SideBar";
 import Header from "../../component/header/Header";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store/Store";
+import { RootState, UseAppSelector } from "../../../redux/store/Store";
 import {
   ServiceType,
   fetchDataService,
@@ -14,6 +14,7 @@ import { CaretRightOutlined } from "@ant-design/icons";
 import { Badge, DatePicker, DatePickerProps, Select, Table } from "antd";
 import search from "../../../images/search-icon.png";
 import prev from "../../../images/prev.png";
+import { CapSoType, fetchDataCapSo } from "../../../redux/slice/CapSoSlice";
 const DetailService = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -33,23 +34,33 @@ const DetailService = () => {
     console.log(date, dateString);
   };
 
+  const capSo = UseAppSelector((state) => state.capSo.capSo);
+
+  useEffect(() => {
+    dispatch(fetchDataCapSo());
+  }, [dispatch]);
+
+  const filterNameCapSo = capSo.filter(
+    (item) => item.serviceName === service?.name
+  );
   const columns = [
     {
       title: <p className="custom-table-header">Số thứ tự</p>,
       dataIndex: "stt",
       key: "stt",
     },
-
     {
       title: <p className="custom-table-header">Trạng thái</p>,
       dataIndex: "activeService",
       key: "activeService",
-      render: (text: any, record: ServiceType) => {
-        if (record.activeService === "Hoạt động")
-          return <Badge status="success" text={record.activeService}></Badge>;
+      render: (text: any, record: CapSoType) => {
+        if (record.active === "Đã sử dụng")
+          return <Badge status="success" text="Đã hoàn thành"></Badge>;
 
-        if (record.activeService === "Ngưng hoạt động")
-          return <Badge status="error" text={record.activeService}></Badge>;
+        if (record.active === "Đang chờ")
+          return <Badge status="processing" text="Đang thực hiện"></Badge>;
+        if (record.active === "Bỏ qua")
+          return <Badge status="default" text="Vắng"></Badge>;
       },
     },
   ];
@@ -174,7 +185,7 @@ const DetailService = () => {
                   <Select
                     className="select-active-detail-service-1"
                     defaultValue="Tất cả"
-                    style={{ width: 160 }}
+                    style={{ width: 160, textAlign: "left" }}
                     onChange={handleChange}
                     options={[
                       { value: "Tất cả", label: "Tất cả" },
@@ -224,6 +235,7 @@ const DetailService = () => {
                 <Table
                   columns={columns}
                   pagination={{ pageSize: 4 }}
+                  dataSource={filterNameCapSo}
                   bordered
                 />
               </div>

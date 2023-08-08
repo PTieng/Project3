@@ -101,6 +101,7 @@ const Account = () => {
       ),
     },
   ];
+  console.log(users);
 
   return (
     <div>
@@ -149,7 +150,7 @@ const Account = () => {
               <Table
                 columns={columns}
                 dataSource={filterUser}
-                pagination={{ pageSize: 4 }}
+                pagination={{ pageSize: 7 }}
                 bordered
               />
             </div>

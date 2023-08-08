@@ -4,6 +4,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import ServiceSlice from "../slice/ServiceSlice";
 import UserSlice from "../slice/UserSlice";
 import CapSoSlice from "../slice/CapSoSlice";
+import VaiTroSlice from "../slice/VaiTroSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     services: ServiceSlice,
     users: UserSlice,
     capSo: CapSoSlice,
+    vaiTro: VaiTroSlice,
   },
 });
 

@@ -19,6 +19,7 @@ import AddUpdateAccount from "../admin/account/addUpdate/AddUpdateAccount";
 import Account from "../admin/account/Account";
 import DetailCapSo from "../admin/capSo/detail/DetailCapSo";
 import AddCapSo from "../admin/capSo/add/AddCapSo";
+import UpdateVaiTro from "../admin/vaiTro/update/UpdateVaiTro";
 const MyRoute = () => {
   return (
     <div>
@@ -39,15 +40,14 @@ const MyRoute = () => {
         <Route path="/admin/service/detail" element={<DetailService />} />
         <Route path="/admin/capso" element={<CapSo />} />
         <Route path="/admin/capso/detail/:id" element={<DetailCapSo />} />
-
         <Route path="/admin/capso/add" element={<AddCapSo />} />
-
         <Route path="/admin/account" element={<Account />} />
         <Route path="/admin/account/add/:id" element={<AddUpdateAccount />} />
         <Route path="/admin/account/add" element={<AddUpdateAccount />} />
         <Route path="/admin/user" element={<User />} />
         <Route path="/admin/vaitro" element={<VaiTro />} />
         <Route path="/admin/baocao" element={<BaoCao />} />
+        <Route path="/admin/baocao/update/:id" element={<UpdateVaiTro />} />
       </Routes>
     </div>
   );

@@ -9,7 +9,7 @@ export interface CapSoType {
   hsd: string;
   nguonCap: string;
   serviceName: string;
-  stt: string;
+  stt: number;
   quay: number;
 }
 
