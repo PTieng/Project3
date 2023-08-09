@@ -2,14 +2,20 @@ import React, { useEffect, useState } from "react";
 import SideBar from "../../component/sideBar/SideBar";
 import Header from "../../component/header/Header";
 import "../addDevice/newDevice.css";
-import { Select, Space} from "antd";
-import { RootState, useAppDispatch } from "../../../redux/store/Store";
+import { Select, Space } from "antd";
+import {
+  RootState,
+  UseAppSelector,
+  useAppDispatch,
+} from "../../../redux/store/Store";
 import { message } from "antd";
 
 import { addDevice, updateDevice } from "../../../redux/slice/DeviceSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Option } from "antd/es/mentions";
+import { UserType } from "../../../redux/slice/UserSlice";
+import { addUserLog } from "../../../redux/slice/UserLogSlice";
 
 const NewDevice = () => {
   const { id } = useParams<{ id: string }>();
@@ -71,6 +77,11 @@ const NewDevice = () => {
 
   console.log(data);
 
+  const userLog = UseAppSelector((state) => state.userLog.userLog);
+
+  const dataAccount = localStorage.getItem("account");
+  const account: UserType = dataAccount ? JSON.parse(dataAccount) : {};
+
   const handleClick = async () => {
     try {
       if (
@@ -87,8 +98,24 @@ const NewDevice = () => {
 
       if (isUpdate) {
         await dispatch(updateDevice({ ...data, id: id }));
+        const updatedUserLog = {
+          id: data.idTB,
+          name: account.userName,
+          time: new Date().toISOString(),
+          ip: "192.168.3.1",
+          action: `Cập nhật thiết bị ${data.name}`,
+        };
+        await dispatch(addUserLog(updatedUserLog));
       } else {
         await dispatch(addDevice(data));
+        const updatedUserLog = {
+          id: data.idTB,
+          name: account.userName,
+          time: new Date().toISOString(),
+          ip: "192.168.3.1",
+          action: `Thêm mới thiết bị ${data.name}`,
+        };
+        await dispatch(addUserLog(updatedUserLog));
       }
       navigate("/admin/device");
       console.log(data);

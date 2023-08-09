@@ -174,7 +174,7 @@ const CapSo = () => {
               >
                 <Option value="Tất cả">Tất cả</Option>
                 {services.map((service) => (
-                  <Option key={service.name} value={service.name}>
+                  <Option key={service.id} value={service.name}>
                     {service.name}
                   </Option>
                 ))}

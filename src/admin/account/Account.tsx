@@ -3,11 +3,16 @@ import SideBar from "../component/sideBar/SideBar";
 import Header from "../component/header/Header";
 import "../account/account.css";
 import { Badge, Select, Table } from "antd";
-import { RootState, useAppDispatch } from "../../redux/store/Store";
+import {
+  RootState,
+  UseAppSelector,
+  useAppDispatch,
+} from "../../redux/store/Store";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UserType, fetchDataUser } from "../../redux/slice/UserSlice";
 import addUser from "../../images/addUser.png";
+import { fetchDataVaiTro } from "../../redux/slice/VaiTroSlice";
 const Account = () => {
   const handleChange = (value: string, type: string) => {
     console.log(`selected ${value}`);
@@ -19,6 +24,12 @@ const Account = () => {
   const dispatch: any = useAppDispatch();
 
   const users = useSelector((state: RootState) => state.users.users);
+
+  const vaiTro = UseAppSelector((state) => state.vaiTro.vaiTro);
+
+  useEffect(() => {
+    dispatch(fetchDataVaiTro());
+  }, [dispatch]);
 
   const [selectActive, setSelectActive] = useState<string>("Tất cả");
   const [keyword, setKeyWord] = useState<string>("");
@@ -125,18 +136,29 @@ const Account = () => {
                 <p className="title-col-select-vaitro">Tên vai trò</p>
                 <Select
                   defaultValue="Tất cả"
-                  className="selcet-vaitro-account"
-                  style={{ width: 200 }}
-                  onChange={(value) => handleChange(value, "active")}
-                  options={[
-                    { value: "Tất cả", label: "Tất cả" },
-                    { value: "Kế toán", label: "Kế toán" },
-                    { value: "Quản lý", label: "Quản lý" },
-                    { value: "Admin", label: "Admin" },
-                  ]}
-                />
+                  style={{
+                    width: 200,
+                    float: "left",
+                    maxHeight: 50,
+                    overflow: "auto",
+                  }}
+                  className="select-name-service-capso"
+                  onChange={(value) => handleChange(value, "service")}
+                >
+                  <Select.Option value="Tất cả">Tất cả</Select.Option>
+                  {vaiTro.map((item) => (
+                    <Select.Option key={item.id} value={item.name}>
+                      {item.name}
+                    </Select.Option>
+                  ))}
+                </Select>
               </div>
-              <div className="col-select-vaitro2">
+              <div
+                className="col-select-vaitro2"
+                style={{
+                  marginLeft: "10%",
+                }}
+              >
                 <p className="title-col-select-vaitro">Từ khoá</p>
                 <input
                   type="text"
@@ -150,7 +172,7 @@ const Account = () => {
               <Table
                 columns={columns}
                 dataSource={filterUser}
-                pagination={{ pageSize: 7 }}
+                pagination={{ pageSize: 4 }}
                 bordered
               />
             </div>

@@ -199,7 +199,7 @@ const Device = () => {
                 <Select
                   className="select-hoatDong"
                   defaultValue="Tất cả"
-                  style={{ width: 250 }}
+                  style={{ width: 250, textAlign: "left" }}
                   onChange={(value) => handleChange(value, "active")}
                   options={[
                     { value: "Tất cả", label: "Tất cả" },
@@ -217,7 +217,7 @@ const Device = () => {
                 <Select
                   className="select-hoatDong"
                   defaultValue="Tất cả"
-                  style={{ width: 250 }}
+                  style={{ width: 250, textAlign: "left" }}
                   onChange={(value) => handleChange(value, "connect")}
                   options={[
                     { value: "Tất cả", label: "Tất cả" },

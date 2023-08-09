@@ -5,9 +5,16 @@ import "../add/addService.css";
 import { Checkbox, message } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store/Store";
+import {
+  RootState,
+  UseAppSelector,
+  useAppDispatch,
+} from "../../../redux/store/Store";
 import { useNavigate, useParams } from "react-router-dom";
 import { addService, updateService } from "../../../redux/slice/ServiceSlice";
+import { UserType } from "../../../redux/slice/UserSlice";
+import { addUserLog } from "../../../redux/slice/UserLogSlice";
+import UserLog from "../../userLog/UserLog";
 const AddService = () => {
   const onChange = (e: CheckboxChangeEvent) => {
     console.log(`checked = ${e.target.checked}`);
@@ -17,7 +24,15 @@ const AddService = () => {
   const dataSelected = useSelector((state: RootState) =>
     state.services.services.find((item) => item.id === id)
   );
-  const dispatch: any = useDispatch();
+
+  const dataAccount = localStorage.getItem("account");
+  const account: UserType = dataAccount ? JSON.parse(dataAccount) : {};
+
+  const userLog = UseAppSelector((state) =>
+    state.userLog.userLog.find((item) => item.id === id)
+  );
+
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [data, setData] = useState({
     idService: isUpdate ? (dataSelected ? dataSelected.idService : "") : "",
@@ -51,8 +66,23 @@ const AddService = () => {
       }
       if (isUpdate) {
         await dispatch(updateService({ ...data, id: id }));
+        const updatedUserLog = {
+          id: data.idService,
+          name: account.userName,
+          time: new Date().toISOString(),
+          ip: "192.168.3.1",
+          action: `Cập nhật dịch vụ ${data.name}`,
+        };
+        await dispatch(addUserLog(updatedUserLog));
       } else {
         await dispatch(addService(data));
+        const newUserLog = {
+          name: account.userName,
+          time: new Date().toISOString(),
+          ip: "192.168.3.1",
+          action: `Thêm mới dịch vụ ${data.name}`,
+        };
+        await dispatch(addUserLog(newUserLog));
       }
       navigate("/admin/service");
     } catch (error) {

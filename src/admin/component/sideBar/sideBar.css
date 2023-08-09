@@ -249,53 +249,19 @@
     display: block;
 }
 
-.active-link {
-    background-color: #FF7506;
-    color: #FFFFFF;
-}
-
-.dashboard.active {
-    background: var(--orange-orange-500, #FF7506);
-    color: #FFFFFF;
-}
-
-.device.active {
-    background: var(--orange-orange-500, #FF7506);
-    color: #FFFFFF;
-}
-
-.service.active {
-    background: var(--orange-orange-500, #FF7506);
-    color: #FFFFFF;
-}
-
+.dashboard.active,
+.service.active,
 .number.active,
-.row-box-hide-sidebar:active,
-.row-box-hide-sidebar2,
-.row-box-hide-sidebar3 {
+.report.active,
+.device.active,
+.row-box-hide-sidebar.active {
     background: var(--orange-orange-500, #FF7506);
-    color: #FFFFFF;
 }
 
-.sideBar .active p {
-    color: #FFFFFF;
-}
-
-/* Vô hiệu hóa hover cho các NavLink đã active */
-.sideBar .dashboard.active:hover,
-.sideBar .device.active:hover,
-.sideBar .service.active:hover,
-.sideBar .number.active:hover,
-.sideBar .report.active:hover,
-.sideBar .setting.active:hover {
-    color: #FFFFFF;
-}
-
-.sideBar .dashboard.active p:hover,
-.sideBar .device.active p:hover,
-.sideBar .service.active p:hover,
-.sideBar .number.active p:hover,
-.sideBar .report.active p:hover,
-.sideBar .setting.active p:hover {
-    color: #FFFFFF;
+.dashboard.active .title-dashboard,
+.service.active .title-service,
+.device.active .title-device,
+.number.active .title-number,
+.report.active .title-report {
+    color: var(--white, #FFF);
 }

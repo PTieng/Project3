@@ -4,49 +4,60 @@ import Header from "../component/header/Header";
 import "../vaiTro/vaiTro.css";
 import { Badge, Table } from "antd";
 import { UseAppSelector, useAppDispatch } from "../../redux/store/Store";
-import { UserType, fetchDataUser } from "../../redux/slice/UserSlice";
 import { useNavigate } from "react-router-dom";
+import { VaiTroType, fetchDataVaiTro } from "../../redux/slice/VaiTroSlice";
+import addVaiTro from "../../images/addVaiTro.png";
+import { fetchDataUser } from "../../redux/slice/UserSlice";
 
 const VaiTro = () => {
   const navigate = useNavigate();
 
-  const users = UseAppSelector((state) => state.users.users);
   const dispatch = useAppDispatch();
+
+  const handleUpdate = (id?: string) => {
+    navigate(`/admin/vaitro/add/${id}`);
+  };
+
+  const handleAdd = () => {
+    navigate("/admin/vaitro/add");
+  };
+
+  const vaiTro = UseAppSelector((state) => state.vaiTro.vaiTro);
+  const user = UseAppSelector((state) => state.users.users);
 
   useEffect(() => {
     dispatch(fetchDataUser());
   }, [dispatch]);
 
-  const handleUpdate = (id?: string) => {
-    navigate(`/admin/baocao/update/${id}`);
-  };
-  const uniqueRoles = Array.from(new Set(users.map((user) => user.vaiTro)));
-  const roleData = uniqueRoles.map((role) => ({ vaiTro: role }));
+  useEffect(() => {
+    dispatch(fetchDataVaiTro());
+  }, [dispatch]);
+
   const columns = [
     {
       title: <p className="custom-table-header">Tên vai trò</p>,
-      dataIndex: "vaiTro",
-      key: "vaiTro",
+      dataIndex: "name",
+      key: "name",
     },
     {
       title: <p className="custom-table-header">Số người dùng</p>,
-      dataIndex: "vaiTro",
+      dataIndex: "name",
       key: "roleCount",
       render: (vaiTro: string) => {
-        const roleUsers = users.filter((user) => user.vaiTro === vaiTro);
-        return <span>{roleUsers.length}</span>;
+        const userCount = user.filter((user) => user.vaiTro === vaiTro).length;
+        return <span>{userCount}</span>;
       },
     },
     {
       title: <p className="custom-table-header">Mô tả</p>,
-      dataIndex: "",
-      key: "",
+      dataIndex: "desc",
+      key: "desc",
     },
     {
       title: " ",
       dataIndex: "detail",
       key: "detial",
-      render: (text: string, record: UserType) => (
+      render: (text: string, record: VaiTroType) => (
         <>
           <span
             className="text-center"
@@ -75,7 +86,10 @@ const VaiTro = () => {
         />
         <div className="content-vaitro">
           <p className="title-vaitro">Danh sách vai trò</p>
-          <div className="row-search-keyword-vaitro">
+          <div
+            className="row-search-keyword-vaitro"
+            style={{ marginLeft: "-4%" }}
+          >
             <p className="title-search-row-search-keyword-vaito">Từ khoá</p>
             <input
               type="text"
@@ -83,13 +97,20 @@ const VaiTro = () => {
               placeholder="Nhập từ khoá"
             />
           </div>
-          <div className="content-main-vaitro">
-            <Table
-              columns={columns}
-              pagination={{ pageSize: 4 }}
-              bordered
-              dataSource={roleData as UserType[]}
-            />
+          <div className="d-flex align-items-center justify-content-between mt-3">
+            <div className="content-main-vaitro">
+              <Table
+                columns={columns}
+                pagination={{ pageSize: 4 }}
+                bordered
+                dataSource={vaiTro}
+              />
+            </div>
+            <div>
+              <button className="add-vaitro" onClick={handleAdd}>
+                <img src={addVaiTro} alt="" className="img-add-vaitro" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

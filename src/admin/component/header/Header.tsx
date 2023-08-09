@@ -1,5 +1,5 @@
 import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
-import React from "react";
+import React, { useState } from "react";
 import notification from "../../../images/notification2.png";
 import avarta from "../../../images/avarta.avif";
 import "../../component/header/header.css";
@@ -16,7 +16,7 @@ type Props = {
 
 const Header = (props: Props) => {
   const navigate = useNavigate();
-
+  const [showHide, setShowHide] = useState(false);
   const handleInfor = () => {
     navigate("/admin/information");
   };
@@ -60,6 +60,10 @@ const Header = (props: Props) => {
     });
   }
 
+  const handleShow = () => {
+    setShowHide(!showHide);
+  };
+
   return (
     <div
       className="width d-flex justify-content-between "
@@ -75,7 +79,13 @@ const Header = (props: Props) => {
 
       <div className="d-flex mt-4" style={{ marginLeft: "-25px" }}>
         <div className="me-4">
-          <img src={notification} alt="" className="notification-icon" />
+          <img
+            src={notification}
+            alt=""
+            className="notification-icon"
+            onClick={handleShow}
+          />
+          {showHide && <div className="">1</div>}
         </div>
         <div className="d-flex justify-content-between">
           <div>

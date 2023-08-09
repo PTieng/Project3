@@ -12,14 +12,14 @@ import Service from "../admin/service/Service";
 import AddService from "../admin/service/add/AddService";
 import DetailService from "../admin/service/detail/DetailService";
 import CapSo from "../admin/capSo/CapSo";
-import User from "../admin/user/User";
-import VaiTro from "../admin/vaiTro/VaiTro";
 import BaoCao from "../admin/baoCao/BaoCao";
 import AddUpdateAccount from "../admin/account/addUpdate/AddUpdateAccount";
 import Account from "../admin/account/Account";
 import DetailCapSo from "../admin/capSo/detail/DetailCapSo";
 import AddCapSo from "../admin/capSo/add/AddCapSo";
 import UpdateVaiTro from "../admin/vaiTro/update/UpdateVaiTro";
+import VaiTro from "../admin/vaiTro/VaiTro";
+import UserLog from "../admin/userLog/UserLog";
 const MyRoute = () => {
   return (
     <div>
@@ -44,10 +44,11 @@ const MyRoute = () => {
         <Route path="/admin/account" element={<Account />} />
         <Route path="/admin/account/add/:id" element={<AddUpdateAccount />} />
         <Route path="/admin/account/add" element={<AddUpdateAccount />} />
-        <Route path="/admin/user" element={<User />} />
         <Route path="/admin/vaitro" element={<VaiTro />} />
+        <Route path="/admin/vaitro/add" element={<UpdateVaiTro />} />
+        <Route path="/admin/vaitro/add/:id" element={<UpdateVaiTro />} />
         <Route path="/admin/baocao" element={<BaoCao />} />
-        <Route path="/admin/baocao/update/:id" element={<UpdateVaiTro />} />
+        <Route path="/admin/userLog" element={<UserLog />} />
       </Routes>
     </div>
   );

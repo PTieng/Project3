@@ -133,7 +133,7 @@ const Service = () => {
                 <Select
                   className="select-hoatDong-service"
                   defaultValue="Tất cả"
-                  style={{ width: 250 }}
+                  style={{ width: 250, textAlign: "left" }}
                   onChange={(value) => handleChange(value, "activeService")}
                   options={[
                     { value: "Tất cả", label: "Tất cả" },

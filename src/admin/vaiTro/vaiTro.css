@@ -3,7 +3,7 @@
     left: 15%;
     height: 80%;
     width: 80%;
-    top: 17%;
+    top: 14%;
 }
 
 .title-vaitro {
@@ -20,9 +20,10 @@
 
 .content-main-vaitro {
     position: relative;
-    width: 100%;
+    width: 97%;
     height: 80%;
     left: 2%;
+    top: 2%;
 }
 
 .row-search-keyword-vaitro {
@@ -58,4 +59,21 @@
     background: var(--white, #FFF);
     top: -10px;
     outline: none;
+}
+
+.add-vaitro {
+    position: absolute;
+    top: -73%;
+    height: 73px;
+    width: 73px;
+    border: none;
+    top: 134px;
+}
+
+.img-add-vaitro {
+    position: relative;
+    left: -12%;
+    top: -7%;
+    width: 70px;
+    height: 80px;
 }

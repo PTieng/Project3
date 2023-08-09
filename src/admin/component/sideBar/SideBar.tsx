@@ -96,9 +96,7 @@ const SideBar = () => {
         >
           <div className={`setting ${showArrow ? "active" : ""}`}>
             <img src={setting} alt="" className="icon-setting" />
-            <a href="" className="title-setting">
-              Cài đặt hệ thống
-            </a>
+            <p className="title-setting">Cài đặt hệ thống</p>
             <img
               src={vertical}
               alt=""
@@ -136,7 +134,7 @@ const SideBar = () => {
               </p>
             </NavLink>
             <NavLink
-              to="/admin/user"
+              to="/admin/userLog"
               className={`row-box-hide-sidebar3 ${isActive("user-log")}`}
               style={{ textDecoration: "none" }}
             >

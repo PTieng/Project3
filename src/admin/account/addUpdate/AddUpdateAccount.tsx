@@ -5,8 +5,10 @@ import "../addUpdate/addupdateAccount.css";
 import { Select, message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { UseAppSelector, useAppDispatch } from "../../../redux/store/Store";
-import { addUser, updateUser } from "../../../redux/slice/UserSlice";
+import { UserType, addUser, updateUser } from "../../../redux/slice/UserSlice";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
+import { Option } from "antd/es/mentions";
+import { addUserLog } from "../../../redux/slice/UserLogSlice";
 const AddUpdateAccount = () => {
   const { id } = useParams<{ id: string }>();
   const isUpdate = !!id;
@@ -14,6 +16,13 @@ const AddUpdateAccount = () => {
   const dataSelected = UseAppSelector((state) =>
     state.users.users.find((item) => item.id === id)
   );
+
+  const vaiTro = UseAppSelector((state) => state.vaiTro.vaiTro);
+
+  const userLog = UseAppSelector((state) => state.userLog.userLog);
+
+  const dataAccount = localStorage.getItem("account");
+  const account: UserType = dataAccount ? JSON.parse(dataAccount) : {};
 
   const [confirmPassword, setConFirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -85,8 +94,23 @@ const AddUpdateAccount = () => {
       }
       if (isUpdate) {
         dispatch(updateUser({ ...data, id: id }));
+        const newUserLog = {
+          name: account.userName,
+          time: new Date().toISOString(),
+          ip: "192.168.3.1",
+          action: `Cập nhật tài khoản ${data.userName}`,
+        };
+        await dispatch(addUserLog(newUserLog));
       } else {
         dispatch(addUser(data));
+        dispatch(updateUser({ ...data, id: id }));
+        const newUserLog = {
+          name: account.userName,
+          time: new Date().toISOString(),
+          ip: "192.168.3.1",
+          action: `Thêm tài khoản ${data.userName}`,
+        };
+        await dispatch(addUserLog(newUserLog));
       }
       navigate("/admin/account");
     } catch (error) {
@@ -158,13 +182,14 @@ const AddUpdateAccount = () => {
                     defaultValue="Chọn vai trò"
                     onChange={handleVaiTro}
                     className="select-box-col-row-box-content-account"
-                    options={[
-                      { value: "Kế toán", label: "Kế toán" },
-                      { value: "Quản lý", label: "Quản lý" },
-                      { value: "Admin", label: "Admin" },
-                    ]}
                     value={data.vaiTro}
-                  />
+                  >
+                    {vaiTro.map((nameVT) => (
+                      <Option key={nameVT.name} value={nameVT.name}>
+                        {nameVT.name}
+                      </Option>
+                    ))}
+                  </Select>
                 </div>
               </div>
               <div

@@ -32,8 +32,8 @@ export const fetchDataUser = createAsyncThunk("firestore/user", async () => {
 export const addUser = createAsyncThunk(
   "firestore/add",
   async (user: UserType) => {
-    const collection = firestore.collection("users").add(user);
-    user.id = (await collection).id;
+    const collection = await firestore.collection("users").add(user);
+    user.id = collection.id;
     return user;
   }
 );

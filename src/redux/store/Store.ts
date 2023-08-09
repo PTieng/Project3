@@ -5,6 +5,7 @@ import ServiceSlice from "../slice/ServiceSlice";
 import UserSlice from "../slice/UserSlice";
 import CapSoSlice from "../slice/CapSoSlice";
 import VaiTroSlice from "../slice/VaiTroSlice";
+import UserLogSlice from "../slice/UserLogSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     users: UserSlice,
     capSo: CapSoSlice,
     vaiTro: VaiTroSlice,
+    userLog: UserLogSlice,
   },
 });
 

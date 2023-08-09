@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { CapSoType, addCapSo } from "../../../redux/slice/CapSoSlice";
 import { UserType } from "../../../redux/slice/UserSlice";
 import { CloseOutlined } from "@ant-design/icons";
+import { addUserLog } from "../../../redux/slice/UserLogSlice";
 
 const AddCapSo = () => {
   const dispatch = useAppDispatch();
@@ -47,6 +48,8 @@ const AddCapSo = () => {
 
   const [isBoxVisible, setIsBoxVisible] = useState(false);
 
+  const userLog = UseAppSelector((state) => state.userLog.userLog);
+
   const handleAdd = async () => {
     if (!selectedService) {
       message.error("Vui lòng chọn dịch vụ");
@@ -76,6 +79,13 @@ const AddCapSo = () => {
       setIsBoxVisible(true);
       message.success("Thêm cấp số thành công");
     }
+    const newUserLog = {
+      name: account.userName,
+      time: new Date().toISOString(),
+      ip: "192.168.3.1",
+      action: `Thêm cấp số mới cho dịch vụ ${selectedService}`,
+    };
+    await dispatch(addUserLog(newUserLog));
   };
 
   const handleCloseModal = () => {

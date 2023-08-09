@@ -4,7 +4,7 @@ import "../dashboard/dashboard.css";
 import avarta from "../../images/avarta.avif";
 import notification from "../../images/notification.png";
 import soDaCap from "../../images/soDaCap.png";
-import { Tag } from "antd";
+import { Progress, Tag } from "antd";
 import { ArrowUpOutlined } from "@ant-design/icons";
 import soDaDung from "../../images/soDaDung.png";
 import soDangCho from "../../images/soDaDung.png";
@@ -12,14 +12,13 @@ import soBoQua from "../../images/daBoQua.png";
 import cYellow from "../../images/c-yellow.png";
 import cGrey from "../../images/c-grey.png";
 import deviceImg from "../../images/device.png";
-import service from "../../images/service.png";
+import serviceImg from "../../images/service.png";
 import cBlue from "../../images/c-blue.png";
-import capSo from "../../images/capSO.png";
+import capSoImg from "../../images/capSO.png";
 import cRed from "../../images/c-red.png";
 import { useNavigate } from "react-router-dom";
 import { UserType } from "../../redux/slice/UserSlice";
 import { UseAppSelector, useAppDispatch } from "../../redux/store/Store";
-import { fetchData } from "../../redux/slice/DeviceSlice";
 const Dashboard = () => {
   const navigate = useNavigate();
 
@@ -32,10 +31,38 @@ const Dashboard = () => {
 
   const dispatch = useAppDispatch();
   const device = UseAppSelector((state) => state.devices.devices);
-  useEffect(() => {
-    dispatch(fetchData());
-  }, [dispatch]);
 
+  const totalDevice = device.length;
+  const activeDeviceCount = device.filter(
+    (device) => device.active === "Hoạt động"
+  ).length;
+  const inactiveDeviceCount = device.filter(
+    (device) => device.active === "Ngưng hoạt động"
+  ).length;
+
+  const service = UseAppSelector((state) => state.services.services);
+  const totalService = service.length;
+  const activeServiceCount = service.filter(
+    (service) => service.activeService === "Hoạt động"
+  ).length;
+  const inactiveServiceCount = service.filter(
+    (service) => service.activeService === "Ngưng hoạt động"
+  ).length;
+
+  const capSo = UseAppSelector((state) => state.capSo.capSo);
+
+  const totalCapSo = capSo.length;
+  const activeCapSoCount = capSo.filter(
+    (capSo) => capSo.active === "Đã sử dụng"
+  ).length;
+  const inactiveCapSoCount = capSo.filter(
+    (capSo) => capSo.active === "Đang chờ"
+  ).length;
+  const passCapSoCount = capSo.filter(
+    (capSo) => capSo.active === "Bỏ qua"
+  ).length;
+
+  const countCapSoSTT = capSo.filter((capSo) => capSo.stt).length;
   return (
     <div>
       <div className="background-dashboard">
@@ -58,7 +85,7 @@ const Dashboard = () => {
                       Số thứ tự <br /> đã cấp
                     </p>
                   </div>
-                  <p className="number-soDaCap">4.000</p>
+                  <p className="number-soDaCap">{countCapSoSTT}</p>
 
                   <p className="tag">
                     <Tag bordered={false} color="orange">
@@ -77,7 +104,7 @@ const Dashboard = () => {
                       Số thứ tự <br /> đã sử dụng
                     </p>
                   </div>
-                  <p className="number-soDaDung">4.000</p>
+                  <p className="number-soDaDung">{activeCapSoCount}</p>
 
                   <p className="tag">
                     <Tag bordered={false} color="red">
@@ -96,7 +123,7 @@ const Dashboard = () => {
                       Số thứ tự <br /> đang chờ
                     </p>
                   </div>
-                  <p className="number-soDangCho">4.000</p>
+                  <p className="number-soDangCho">{inactiveCapSoCount}</p>
 
                   <p className="tag">
                     <Tag bordered={false} color="orange">
@@ -112,10 +139,10 @@ const Dashboard = () => {
                   <div className="header">
                     <img src={soBoQua} alt="" className="img-soBoQua" />
                     <p className="title">
-                      Số thứ tự <br /> đang chờ
+                      Số thứ tự <br /> đã bỏ qua
                     </p>
                   </div>
-                  <p className="number-soBoQua">4.000</p>
+                  <p className="number-soBoQua">{passCapSoCount}</p>
 
                   <p className="tag">
                     <Tag bordered={false} color="red">
@@ -164,7 +191,8 @@ const Dashboard = () => {
                 <p className="title">Tổng quan</p>
                 <div className="row-device">
                   <div className="col-number-device-dashboard">
-                    <p className="number-device-dashboard">4.000</p>
+                    
+                    <p className="number-device-dashboard">{totalDevice}</p>
                     <div className="row-img-device-dashboard">
                       <img
                         src={deviceImg}
@@ -178,22 +206,24 @@ const Dashboard = () => {
                     <div className="row-dangHoatDong">
                       <img src={cYellow} alt="" className="c-yellow" />
                       <p className="title">Đang hoạt động</p>
-                      <p className="number-dangHoatDong">3.799</p>
+                      <p className="number-dangHoatDong">{activeDeviceCount}</p>
                     </div>
                     <div className="row-ngungHoatDong">
                       <img src={cGrey} alt="" className="c-grey" />
                       <p className="title">Ngưng hoạt động</p>
-                      <p className="number-ngungHoatDong">3.799</p>
+                      <p className="number-ngungHoatDong">
+                        {inactiveDeviceCount}
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="row-service">
                   <div className="col-number-service-dashboard">
-                    <p className="number-service-dashboard">4.000</p>
+                    <p className="number-service-dashboard">{totalService}</p>
                     <div className="row-img-service-dashboard">
                       <img
-                        src={service}
+                        src={serviceImg}
                         alt=""
                         className="img-device-dashboard"
                       />
@@ -208,7 +238,7 @@ const Dashboard = () => {
                         className="number-dangHoatDong-service"
                         style={{ color: "#4277FF" }}
                       >
-                        3.799
+                        {activeServiceCount}
                       </p>
                     </div>
                     <div className="row-ngungHoatDong-service">
@@ -218,7 +248,7 @@ const Dashboard = () => {
                         className="number-ngungHoatDong-service"
                         style={{ color: "#4277FF" }}
                       >
-                        3.799
+                        {inactiveServiceCount}
                       </p>
                     </div>
                   </div>
@@ -226,10 +256,10 @@ const Dashboard = () => {
 
                 <div className="row-number">
                   <div className="col-number-service-dashboard">
-                    <p className="number-service-dashboard">4.000</p>
+                    <p className="number-service-dashboard">{totalCapSo}</p>
                     <div className="row-img-service-dashboard">
                       <img
-                        src={capSo}
+                        src={capSoImg}
                         alt=""
                         className="img-device-dashboard"
                       />
@@ -249,7 +279,7 @@ const Dashboard = () => {
                         className="number-dangHoatDong-service"
                         style={{ color: "#35C75A" }}
                       >
-                        3.799
+                        {activeCapSoCount}
                       </p>
                     </div>
                     <div className="row-dangCho-capSo">
@@ -264,7 +294,7 @@ const Dashboard = () => {
                         className="number-dangCho-capSo"
                         style={{ color: "#35C75A", left: "58px" }}
                       >
-                        3.799
+                        {inactiveCapSoCount}
                       </p>
                     </div>
                     <div className="row-ngungHoatDong-capSo">
@@ -281,7 +311,7 @@ const Dashboard = () => {
                         className="number-ngungHoatDong-capSo"
                         style={{ color: "#35C75A", top: "-35px" }}
                       >
-                        3.799
+                        {passCapSoCount}
                       </p>
                     </div>
                   </div>
