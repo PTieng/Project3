@@ -3,7 +3,6 @@ import SideBar from "../component/sideBar/SideBar";
 import Header from "../component/header/Header";
 import "../capSo/capSo.css";
 import { format } from "date-fns";
-
 import { Badge, DatePicker, DatePickerProps, Select, Table } from "antd";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store/Store";
@@ -211,7 +210,12 @@ const CapSo = () => {
               className="col-select-capSo"
               style={{ marginLeft: "2%", width: "30%" }}
             >
-              <p className="title-col-select-capSo">Chọn thời gian</p>
+              <p
+                className="title-col-select-capSo"
+                style={{ marginLeft: "3%" }}
+              >
+                Chọn thời gian
+              </p>
               <div
                 className="row-date-capso"
                 style={{
@@ -219,7 +223,7 @@ const CapSo = () => {
                 }}
               >
                 <DatePicker onChange={onChange} />
-                <CaretRightOutlined style={{ marginTop: "2.5%" }} />
+                <CaretRightOutlined style={{ marginTop: "3%" }} />
                 <DatePicker onChange={onChange} />
               </div>
             </div>

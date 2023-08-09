@@ -17,6 +17,9 @@ const AddUpdateAccount = () => {
     state.users.users.find((item) => item.id === id)
   );
 
+  const handleCancel = () => {
+    navigate("/admin/account");
+  };
   const vaiTro = UseAppSelector((state) => state.vaiTro.vaiTro);
 
   const userLog = UseAppSelector((state) => state.userLog.userLog);
@@ -269,7 +272,9 @@ const AddUpdateAccount = () => {
               display: "flex",
             }}
           >
-            <button className="btn-cancel-accont">Huỷ bỏ</button>
+            <button className="btn-cancel-accont" onClick={handleCancel}>
+              Huỷ bỏ
+            </button>
             <button
               className="btn-update-account"
               style={{ marginLeft: "10%" }}

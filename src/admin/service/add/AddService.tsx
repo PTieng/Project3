@@ -32,6 +32,10 @@ const AddService = () => {
     state.userLog.userLog.find((item) => item.id === id)
   );
 
+  const handleCancel = () => {
+    navigate("/admin/service");
+  };
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [data, setData] = useState({
@@ -212,6 +216,7 @@ const AddService = () => {
             <button
               className="btn-cancle-add-service"
               style={{ marginLeft: "17%" }}
+              onClick={handleCancel}
             >
               Huỷ
             </button>

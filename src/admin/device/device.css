@@ -31,10 +31,10 @@
     height: 100px;
 }
 
-.select-hoatDong {
+.content-device .select-hoatDong {
     position: relative;
     top: -5px;
-    left: -10%;
+    left: -5%;
 }
 
 .ttHoatDong {
@@ -66,7 +66,7 @@
     border: 1.5px solid var(--gray-gray-100, #D4D4D7);
     background: var(--white, #FFF);
     position: relative;
-    top: -14px;
+    top: -5px;
     outline: none;
 }
 
@@ -126,12 +126,6 @@
     border-color: #FF7506;
 }
 
-/* a:not([href]):not([class]),
-a:not([href]):not([class]):hover {
-    color: #FFF !important;
-    text-decoration: none;
-} */
-
 .add-device {
     position: absolute;
     width: 100px;
@@ -162,4 +156,12 @@ a:not([href]):not([class]):hover {
     top: -14px;
     left: -2%;
     width: 90px;
+}
+
+.content-device .btn-search-device {
+    position: relative;
+    top: -42px;
+    left: 40%;
+    border: none;
+    background: #FFF;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../component/sideBar/SideBar";
 import Header from "../component/header/Header";
 import "./user.css";
@@ -9,6 +9,8 @@ import { UseAppSelector, useAppDispatch } from "../../redux/store/Store";
 import { fetchDataUserLog } from "../../redux/slice/UserLogSlice";
 import { UserType } from "../../redux/slice/UserSlice";
 import moment from "moment";
+import searchIcon from "../../images/search-icon.png";
+
 const UserLog = () => {
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
@@ -50,6 +52,18 @@ const UserLog = () => {
     },
   ];
 
+  const [keyWord, setKeyWord] = useState<string>("");
+
+  const filterSearch = userLog.filter((item) => {
+    const isSearch =
+      keyWord === "" ||
+      item.name.toLowerCase().includes(keyWord) ||
+      item.action.toLowerCase().includes(keyWord) ||
+      item.time.toLowerCase().includes(keyWord) ||
+      item.ip.toLowerCase().includes(keyWord);
+    return isSearch;
+  });
+
   return (
     <div>
       <div className="background-userlog" style={{ display: "flex" }}>
@@ -73,8 +87,12 @@ const UserLog = () => {
                 type="text"
                 className="search-keyword-account"
                 placeholder="Nhập từ khoá"
-                // onChange={(e) => setKeyWord(e.target.value)}
+                onChange={(e) => setKeyWord(e.target.value)}
               />
+              <button className="btn-search-userLog">
+                {" "}
+                <img src={searchIcon} alt="" />
+              </button>
             </div>
           </div>
 
@@ -83,7 +101,7 @@ const UserLog = () => {
               columns={columns}
               pagination={{ pageSize: 5 }}
               bordered
-              dataSource={userLog}
+              dataSource={filterSearch}
             />
           </div>
         </div>

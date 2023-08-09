@@ -203,6 +203,7 @@ const NewDevice = () => {
                       height: 41,
                       top: 30,
                       padding: "5px 11px",
+                      textAlign: "left",
                     }}
                     options={[
                       { value: "tất cả", label: "Tất cả" },

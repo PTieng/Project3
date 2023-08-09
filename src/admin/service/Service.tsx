@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import "../service/service.css";
 import SideBar from "../component/sideBar/SideBar";
 import Header from "../component/header/Header";
-import { Select, Space, DatePicker, Table, Badge } from "antd";
+import { Select, Space, DatePicker, Table, Badge, DatePickerProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store/Store";
 import { ServiceType, fetchDataService } from "../../redux/slice/ServiceSlice";
 import addService from "../../images/addService.png";
+import searchIcon from "../../images/search-icon.png";
+import { CaretRightOutlined } from "@ant-design/icons";
 
 const Service = () => {
   const handleChange = (value: string, serviceActive: string) => {
@@ -45,7 +47,9 @@ const Service = () => {
       services.description.toLowerCase().includes(searchKeyword);
     return isSelecteActive && isSearchKeyword;
   });
-
+  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
+    console.log(date, dateString);
+  };
   const columns = [
     {
       title: <p className="custom-table-header">Mã dịch vụ </p>,
@@ -133,7 +137,7 @@ const Service = () => {
                 <Select
                   className="select-hoatDong-service"
                   defaultValue="Tất cả"
-                  style={{ width: 250, textAlign: "left" }}
+                  style={{ width: 250, textAlign: "left", marginTop: "-5px" }}
                   onChange={(value) => handleChange(value, "activeService")}
                   options={[
                     { value: "Tất cả", label: "Tất cả" },
@@ -153,9 +157,11 @@ const Service = () => {
               >
                 Chọn thời gian
               </p>
-              <Space direction="vertical" size={12}>
-                <RangePicker />
-              </Space>
+              <div className="date-service-select" style={{ display: "flex" }}>
+                <DatePicker onChange={onChange} />
+                <CaretRightOutlined style={{ marginTop: "5%" }} />
+                <DatePicker onChange={onChange} />
+              </div>
             </div>
             <div
               className="col-select-service-active"
@@ -170,14 +176,18 @@ const Service = () => {
               <input
                 type="text"
                 style={{ marginTop: "22px" }}
-                className="input-search-device"
+                className="input-search-service"
                 placeholder="Nhập từ khoá"
                 onChange={(e) => setSearchKeyword(e.target.value)}
               />
+              <button className="btn-search-service">
+                {" "}
+                <img src={searchIcon} alt="" />
+              </button>
             </div>
           </div>
           <div
-            className="table-antd-device"
+            className="table-antd-service"
             style={{ height: 400, marginTop: "1%" }}
           >
             <Table

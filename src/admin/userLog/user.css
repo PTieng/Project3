@@ -18,3 +18,11 @@
     top: -75%;
     left: 245%;
 }
+
+.btn-search-userLog {
+    position: relative;
+    top: -46px;
+    left: 49%;
+    border: none;
+    background: #FFF;
+}

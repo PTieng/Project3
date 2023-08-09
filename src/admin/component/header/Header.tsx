@@ -1,10 +1,13 @@
 import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import notification from "../../../images/notification2.png";
 import avarta from "../../../images/avarta.avif";
 import "../../component/header/header.css";
 import { useNavigate } from "react-router-dom";
 import { UserType } from "../../../redux/slice/UserSlice";
+import { UseAppSelector, useAppDispatch } from "../../../redux/store/Store";
+import { fetchDataCapSo } from "../../../redux/slice/CapSoSlice";
+import format from "date-fns/format";
 
 type Props = {
   firstTitle: string;
@@ -64,6 +67,12 @@ const Header = (props: Props) => {
     setShowHide(!showHide);
   };
 
+  const capSo = UseAppSelector((state) => state.capSo.capSo);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchDataCapSo());
+  }, [dispatch]);
   return (
     <div
       className="width d-flex justify-content-between "
@@ -85,7 +94,35 @@ const Header = (props: Props) => {
             className="notification-icon"
             onClick={handleShow}
           />
-          {showHide && <div className="">1</div>}
+          {showHide && (
+            <div className="nofitication-hide">
+              <div className="header-nofitication-hide">
+                <p className="thongbao">Thông báo</p>
+              </div>
+
+              <div className="row-nofitication-hide">
+                {capSo.map((item, index) => (
+                  <div
+                    key={index}
+                    className="row-data-capSo-nofitication-hide "
+                    style={{ marginTop: "20px" }}
+                  >
+                    <p className="name-data-capSo-noti">
+                      Người dùng:{" "}
+                      <span style={{ marginLeft: "5%" }}>{item.cusName}</span>
+                    </p>
+                    <p className="time-data-capSo-noti">
+                      Thời gian nhận số:{" "}
+                      <span style={{ marginLeft: "1%" }}>
+                        {format(new Date(item.dateCap), "HH:mm - dd/MM/yyyy")}
+                      </span>
+                    </p>
+                    <hr className="hr-noti"/>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
         <div className="d-flex justify-content-between">
           <div>

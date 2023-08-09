@@ -67,3 +67,8 @@
 
     border-color: #FF7506;
 }
+
+:where(.css-dev-only-do-not-override-txh9fw).ant-table-wrapper .ant-table-thead th.ant-table-column-has-sorters:hover {
+    background-color: #FF7506;
+
+}

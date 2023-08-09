@@ -33,6 +33,9 @@ const SideBar = () => {
     return activeItem === itemName ? "active" : "";
   };
 
+  const handleLogOut = () => {
+    navigate("/");
+  };
   return (
     <div>
       <div className="sideBar">
@@ -147,7 +150,7 @@ const SideBar = () => {
 
         <div className="logOut">
           <img src={logOut} alt="" className="icon-logOut" />
-          <button type="submit" className="btn-logOut">
+          <button type="submit" className="btn-logOut" onClick={handleLogOut}>
             Đăng xuất
           </button>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../component/sideBar/SideBar";
 import Header from "../component/header/Header";
 import "../vaiTro/vaiTro.css";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { VaiTroType, fetchDataVaiTro } from "../../redux/slice/VaiTroSlice";
 import addVaiTro from "../../images/addVaiTro.png";
 import { fetchDataUser } from "../../redux/slice/UserSlice";
+import searchIcon from "../../images/search-icon.png";
 
 const VaiTro = () => {
   const navigate = useNavigate();
@@ -32,6 +33,16 @@ const VaiTro = () => {
   useEffect(() => {
     dispatch(fetchDataVaiTro());
   }, [dispatch]);
+
+  const [keyword, setKeyWord] = useState<string>("");
+
+  const filterSearch = vaiTro.filter((item) => {
+    const isKeyWord =
+      keyword === "" ||
+      item.name.toLowerCase().includes(keyword) ||
+      item.desc.toLowerCase().includes(keyword);
+    return isKeyWord;
+  });
 
   const columns = [
     {
@@ -95,7 +106,9 @@ const VaiTro = () => {
               type="text"
               className="input-search-row-search-keyword-vaitro"
               placeholder="Nhập từ khoá"
+              onChange={(e) => setKeyWord(e.target.value)}
             />
+            <button className="btn-search-vaitro"> <img src={searchIcon} alt="" /></button>
           </div>
           <div className="d-flex align-items-center justify-content-between mt-3">
             <div className="content-main-vaitro">
@@ -103,7 +116,7 @@ const VaiTro = () => {
                 columns={columns}
                 pagination={{ pageSize: 4 }}
                 bordered
-                dataSource={vaiTro}
+                dataSource={filterSearch}
               />
             </div>
             <div>

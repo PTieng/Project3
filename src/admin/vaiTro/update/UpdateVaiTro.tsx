@@ -43,7 +43,9 @@ const UpdateVaiTro = () => {
   const userLog = UseAppSelector((state) => state.userLog.userLog);
   const dataAccount = localStorage.getItem("account");
   const account: UserType = dataAccount ? JSON.parse(dataAccount) : {};
-
+  const handleCancel = () => {
+    navigate("/admin/vaitro");
+  };
   const handleSubmit = async () => {
     try {
       if (!data.name || !data.desc) {
@@ -186,7 +188,9 @@ const UpdateVaiTro = () => {
                   className="row-button-update-vaitro"
                   style={{ display: "flex" }}
                 >
-                  <button className="btn-cancle-vaitro">Huỷ</button>
+                  <button className="btn-cancle-vaitro" onClick={handleCancel}>
+                    Huỷ
+                  </button>
                   <button className="btn-add-vaitro" onClick={handleSubmit}>
                     {isUpdate ? "Cập nhật" : "Thêm mới"}
                   </button>

@@ -58,14 +58,14 @@
 }
 
 .col-select-vaitro2 {
-    left: 10%;
+    left: 15%;
     width: 30%;
 }
 
 .search-keyword-account {
     position: relative;
     display: flex;
-    width: 300px;
+    width: 230px;
     height: 44px;
     padding: 10px 16px 10px 12px;
     justify-content: space-between;
@@ -74,6 +74,7 @@
     border: 1.5px solid var(--gray-gray-100, #D4D4D7);
     background: var(--white, #FFF);
     outline: none;
+    top: -9px;
 }
 
 .table-account {
@@ -96,4 +97,12 @@
     position: relative;
     left: -13px;
     top: -4px;
+}
+
+.btn-search-account {
+    position: relative;
+    top: -45px;
+    border: none;
+    background: #FFF;
+    left: 5%;
 }

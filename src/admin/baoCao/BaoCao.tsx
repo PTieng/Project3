@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import SideBar from "../component/sideBar/SideBar";
 import Header from "../component/header/Header";
 import "../baoCao/baoCao.css";
-import { DatePicker, DatePickerProps, Table } from "antd";
+import { Badge, DatePicker, DatePickerProps, Table } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { CapSoType, fetchDataCapSo } from "../../redux/slice/CapSoSlice";
 import { ColumnsType } from "antd/es/table";
@@ -22,37 +22,45 @@ const BaoCao = () => {
     dispatch(fetchDataCapSo());
   }, [dispatch]);
 
-  const columns: ColumnsType<CapSoType> = [
+  const columns = [
     {
       title: <p className="custom-table-header">Số thứ tự</p>,
       dataIndex: "stt",
-      defaultSortOrder: "descend",
-      sorter: (a, b) => a.stt - b.stt,
+      key: "stt",
     },
     {
       title: <p className="custom-table-header">Tên dịch vụ</p>,
       dataIndex: "serviceName",
-      defaultSortOrder: "descend",
-      sorter: (a, b) => a.serviceName.localeCompare(b.serviceName),
+      key: "serviceName",
     },
     {
       title: <p className="custom-table-header">Thời gian cấp</p>,
       dataIndex: "dateCap",
-      defaultSortOrder: "descend",
-      sorter: (a, b) => a.dateCap.localeCompare(b.dateCap),
-      render: (dateCap) => format(new Date(dateCap), "HH:mm - dd/MM/yyyy"),
+      key: "dateCap",
+      render: (dateCap: string) => (
+        <p className="timecap" style={{ marginTop: "15px" }}>
+          {format(new Date(dateCap), "HH:mm - dd/MM/yyyy")}
+        </p>
+      ),
     },
     {
       title: <p className="custom-table-header">Tình trạng</p>,
       dataIndex: "active",
-      defaultSortOrder: "descend",
-      sorter: (a, b) => a.active.localeCompare(b.active),
+      key: "active",
+      render: (text: any, record: CapSoType) => {
+        if (record.active === "Đang chờ")
+          return <Badge status="processing" text={record.active}></Badge>;
+
+        if (record.active === "Đã sử dụng")
+          return <Badge status="default" text={record.active}></Badge>;
+        if (record.active === "Bỏ qua")
+          return <Badge status="error" text={record.active}></Badge>;
+      },
     },
     {
       title: <p className="custom-table-header">Nguồn cấp</p>,
       dataIndex: "nguonCap",
-      defaultSortOrder: "descend",
-      sorter: (a, b) => a.nguonCap.localeCompare(b.nguonCap),
+      key: "nguonCap",
     },
   ];
 
@@ -70,7 +78,7 @@ const BaoCao = () => {
             <p className="title-baocao">Chọn thời gian</p>
             <div className="select-date-baocao">
               <DatePicker onChange={onChange} />
-              <CaretRightOutlined />
+              <CaretRightOutlined style={{ marginTop: "2px" }} />
               <DatePicker onChange={onChange} />
             </div>
           </div>

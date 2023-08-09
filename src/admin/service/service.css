@@ -45,7 +45,8 @@
 
 .select-hoatDong-service {
     position: relative;
-    left: 0%;
+    left: 5%;
+    top: -6px;
 }
 
 .add-service {
@@ -54,3 +55,38 @@
     top: 24%;
 }
 
+.btn-search-service {
+    position: relative;
+    top: -52px;
+    left: 58%;
+    border: none;
+    background: #FFF;
+}
+
+.table-antd-service {
+    width: 1144px;
+    height: 100%;
+    position: relative;
+    left: 3%;
+    top: -10px;
+}
+
+.col-select-service-active .input-search-service {
+    display: flex;
+    width: 300px;
+    height: 44px;
+    padding: 10px 16px 10px 12px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    border: 1.5px solid var(--gray-gray-100, #D4D4D7);
+    background: var(--white, #FFF);
+    position: relative;
+    top: -17px;
+    outline: none;
+}
+
+.date-service-select {
+    position: relative;
+    top: -8px;
+}

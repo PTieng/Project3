@@ -8,6 +8,8 @@ import { DeviceType, fetchData } from "../../redux/slice/DeviceSlice";
 import { RootState } from "../../redux/store/Store";
 import addDevice from "../../images/addDevice.png";
 import { useNavigate } from "react-router-dom";
+import searchIcon from "../../images/search-icon.png";
+
 const Device = () => {
   const handleChange = (value: string, type: string) => {
     console.log(`selected ${value}`);
@@ -238,6 +240,10 @@ const Device = () => {
                 placeholder="Nhập từ khoá"
                 onChange={(e) => setSearchKeyword(e.target.value)}
               />
+              <button className="btn-search-device">
+                {" "}
+                <img src={searchIcon} alt="" />
+              </button>
             </div>
           </div>
 

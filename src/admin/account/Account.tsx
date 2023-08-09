@@ -13,11 +13,13 @@ import { useSelector } from "react-redux";
 import { UserType, fetchDataUser } from "../../redux/slice/UserSlice";
 import addUser from "../../images/addUser.png";
 import { fetchDataVaiTro } from "../../redux/slice/VaiTroSlice";
+import searchIcon from "../../images/search-icon.png";
+
 const Account = () => {
   const handleChange = (value: string, type: string) => {
     console.log(`selected ${value}`);
-    if (type === "active") {
-      setSelectActive(value);
+    if (type === "vaiTro") {
+      setSelectVaiTro(value);
     }
   };
   const navigate = useNavigate();
@@ -31,11 +33,12 @@ const Account = () => {
     dispatch(fetchDataVaiTro());
   }, [dispatch]);
 
-  const [selectActive, setSelectActive] = useState<string>("Tất cả");
+  const [selectVaiTro, setSelectVaiTro] = useState<string>("Tất cả");
+
   const [keyword, setKeyWord] = useState<string>("");
   const filterUser = users.filter((user) => {
-    const isSelectActive =
-      selectActive === "Tất cả" || user.vaiTro === selectActive;
+    const isSelectVaiTro =
+      selectVaiTro === "Tất cả" || user.vaiTro === selectVaiTro;
     const searchKeyword =
       keyword === "" ||
       (user.userName && user.userName.toLowerCase().includes(keyword)) ||
@@ -44,7 +47,7 @@ const Account = () => {
       (user.email && user.email.toLowerCase().includes(keyword)) ||
       (user.vaiTro && user.vaiTro.toLowerCase().includes(keyword)) ||
       (user.active && user.active.toLowerCase().includes(keyword));
-    return isSelectActive && searchKeyword;
+    return isSelectVaiTro && searchKeyword;
   });
 
   useEffect(() => {
@@ -112,7 +115,6 @@ const Account = () => {
       ),
     },
   ];
-  console.log(users);
 
   return (
     <div>
@@ -138,12 +140,10 @@ const Account = () => {
                   defaultValue="Tất cả"
                   style={{
                     width: 200,
-                    float: "left",
-                    maxHeight: 50,
-                    overflow: "auto",
+                    marginLeft: "-385px",
                   }}
                   className="select-name-service-capso"
-                  onChange={(value) => handleChange(value, "service")}
+                  onChange={(value) => handleChange(value, "vaiTro")}
                 >
                   <Select.Option value="Tất cả">Tất cả</Select.Option>
                   {vaiTro.map((item) => (
@@ -166,6 +166,10 @@ const Account = () => {
                   placeholder="Nhập từ khoá"
                   onChange={(e) => setKeyWord(e.target.value)}
                 />
+                <button className="btn-search-account">
+                  {" "}
+                  <img src={searchIcon} alt="" />
+                </button>
               </div>
             </div>
             <div className="table-account">

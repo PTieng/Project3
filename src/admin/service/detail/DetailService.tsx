@@ -73,6 +73,17 @@ const DetailService = () => {
     navigate(`/admin/service/detail/${id}`);
   };
 
+  const [selectActive, setSelectActive] = useState<string>("Tất cả");
+  const [keyWord, setKeyWord] = useState<string>("");
+  const filterActive = capSo.filter((item) => {
+    const isSelecteActive =
+      selectActive === "Tất cả" || item.active === selectActive;
+
+    const isKeyWord =
+      keyWord === "" || item.active.toLowerCase().includes(keyWord) || item.stt.toString().includes(keyWord);
+    return isSelecteActive && isKeyWord;
+  });
+
   return (
     <div>
       <div className="background-detail-service" style={{ display: "flex" }}>
