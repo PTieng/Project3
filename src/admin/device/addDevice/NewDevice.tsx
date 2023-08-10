@@ -99,8 +99,8 @@ const NewDevice = () => {
         return message.error("Vui lòng nhập đầy đủ thông tin");
       }
       const existingUser = user.find(
-        (user) =>
-          user.userName === data.userName && user.password === data.password
+        (item) =>
+          item.userName === data.userName && item.password === data.password
       );
 
       if (!existingUser) {

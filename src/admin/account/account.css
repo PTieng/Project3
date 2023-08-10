@@ -2,8 +2,9 @@
     position: absolute;
     left: 15%;
     height: 82%;
-    width: 82%;
+    width: 84%;
     top: 17%;
+    overflow: hidden;
 }
 
 .title-account-content-account {

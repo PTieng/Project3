@@ -4,7 +4,7 @@ import "../dashboard/dashboard.css";
 import avarta from "../../images/avarta.avif";
 import notification from "../../images/notification.png";
 import soDaCap from "../../images/soDaCap.png";
-import { Progress, Tag } from "antd";
+import { Progress, Select, Tag } from "antd";
 import { ArrowUpOutlined } from "@ant-design/icons";
 import soDaDung from "../../images/soDaDung.png";
 import soDangCho from "../../images/soDaDung.png";
@@ -21,6 +21,10 @@ import { UserType } from "../../redux/slice/UserSlice";
 import { UseAppSelector, useAppDispatch } from "../../redux/store/Store";
 import datePicker from "../../images/datePicker.png";
 import format from "date-fns/format";
+import { fetchDataCapSo } from "../../redux/slice/CapSoSlice";
+import { Area } from "@ant-design/plots";
+import { da } from "date-fns/locale";
+import { current } from "@reduxjs/toolkit";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -99,6 +103,40 @@ const Dashboard = () => {
     setShowHide(!showHide);
   };
 
+  const [selectOption, setSelectOption] = useState<string>("Ngày");
+  const handleChange = (value: string) => {
+    setSelectOption(value);
+  };
+
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   dispatch(fetchDataCapSo());
+  // }, [dispatch]);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    asyncFetch();
+  }, []);
+
+  const asyncFetch = () => {
+    fetch(
+      "https://gw.alipayobjects.com/os/bmw-prod/360c3eae-0c73-46f0-a982-4746a6095010.json"
+    )
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => {
+        console.log("fetch data failed", error);
+      });
+  };
+  const config = {
+    data,
+    xField: "timePeriod",
+    yField: "value",
+    xAxis: {
+      range: [0, 1],
+    },
+  };
   return (
     <div>
       <div className="background-dashboard">
@@ -190,6 +228,38 @@ const Dashboard = () => {
                     </Tag>
                   </p>
                 </div>
+              </div>
+              <div className="charAt-dashboard">
+                <div
+                  className="row-charAt-dashboard"
+                  style={{ display: "flex" }}
+                >
+                  <div className="col-row-charAt-dashboard">
+                    <p className="title-chart-dashboard">
+                      Bảng thống kê theo ngày
+                    </p>
+                    <p className="month-chart-dashboard">Tháng 11/2023</p>
+                  </div>
+                  <div
+                    className="col-row-charAt-dashboard2"
+                    style={{ display: "flex" }}
+                  >
+                    <p className="title-col-row-charAt-dashboard2">Xem theo</p>
+                    <Select
+                      defaultValue="Ngày"
+                      style={{ width: 120 }}
+                      className="select-DWM"
+                      onChange={handleChange}
+                      options={[
+                        { value: "Ngày", label: "Ngày" },
+                        { value: "Tuần", label: "Tuần" },
+                        { value: "Tháng", label: "Tháng" },
+                      ]}
+                    />
+                  </div>
+                </div>
+                {/* <canvas id="myChart" className="charAt"></canvas> */}
+                <Area {...config} className="charAt"/>
               </div>
             </div>
           </div>
@@ -453,13 +523,8 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                <div className="row-calendar">
-                  {/* <img
-                    src={datePicker}
-                    alt=""
-                    className="img-calendar-dashboard"
-                  /> */}
-                </div>
+                {/* <div className="row-calendar"></div> */}
+                <img src={datePicker} alt="" className="img-datePicker" />
               </div>
             </div>
           </div>

@@ -478,7 +478,7 @@
 }
 
 .ant-progress-text {
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .ant-progress-inner {
@@ -552,4 +552,122 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.charAt-dashboard {
+    position: relative;
+    top: 15px;
+    width: 86%;
+    height: 64%;
+    top: 9%;
+    left: 4%;
+    border-radius: 12px;
+    background: var(--white, #FFF);
+}
+
+.row-charAt-dashboard {
+    position: relative;
+    top: 2%;
+    height: 15%;
+    width: 100%;
+}
+
+.col-row-charAt-dashboard,
+.col-row-charAt-dashboard2 {
+    position: relative;
+    text-align: left;
+    left: 5%;
+    width: 60%;
+}
+
+.title-chart-dashboard {
+    position: relative;
+    color: var(--gray-gray-500, #282739);
+
+    /* 20/20 Bold */
+    font-family: Nunito;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    /* 150% */
+}
+
+.month-chart-dashboard {
+    position: relative;
+    color: var(--gray-gray-200-placeholder, #A9A9B0);
+    font-family: Nunito;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    top: -10px;
+}
+
+.col-row-charAt-dashboard2 {
+    width: 40%;
+}
+
+.title-col-row-charAt-dashboard2 {
+    position: relative;
+    color: var(--gray-gray-500, #282739);
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    top: 32%;
+}
+
+.select-DWM {
+    position: relative;
+    left: 5%;
+    top: 17%;
+}
+
+.col-row-charAt-dashboard2 :where(.css-dev-only-do-not-override-txh9fw).ant-select .ant-select-arrow {
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.25);
+    font-style: normal;
+    line-height: 1;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    top: 37%;
+    inset-inline-start: auto;
+    inset-inline-end: 11px;
+    height: 12px;
+    margin-top: -6px;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.calendar-dashboard {
+    position: relative;
+    width: 120px !important;
+    height: 120px !important;
+}
+
+.img-datePicker {
+    position: absolute;
+    top: 62%;
+    left: 4%;
+    height: 292px;
+    width: 390px;
+    object-fit: fill;
+}
+
+.calender-icon {
+    position: absolute;
+    top: 5%;
+}
+
+.charAt {
+    position: relative;
+    top: 80px;
 }
