@@ -123,7 +123,10 @@ const Header = (props: Props) => {
             </div>
           )}
         </div>
-        <div className="d-flex justify-content-between">
+        <div
+          className="d-flex justify-content-between"
+          style={{ display: "flex" }}
+        >
           <div>
             <img
               src={avarta}
@@ -138,7 +141,7 @@ const Header = (props: Props) => {
             <p className="mb-2 hello-header">Xin chào</p>
             <p
               className="mb-4 ms-5 name-header"
-              style={{ cursor: "pointer", textAlign: "left" , left: "33%"}}
+              style={{ cursor: "pointer", textAlign: "left", left: "-24%" }}
               onClick={handleInfor}
             >
               {account.name}

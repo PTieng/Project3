@@ -468,3 +468,77 @@
     position: relative;
     top: -57%;
 }
+
+.circle-device-hoatDong {
+    position: relative;
+    top: -40px;
+    left: -63%;
+}
+
+.circle-device-hoatDong-small {
+    position: relative;
+    left: -63%;
+    top: -110px;
+
+}
+
+.circle-device-hoatDong-small2 {
+    position: relative;
+    left: -45%;
+    top: -110px;
+
+}
+
+.ant-progress-text {
+    font-size: 15px;
+}
+
+.ant-progress-inner {
+    height: 80px !important;
+    width: 80px !important;
+}
+
+.circle-device-hoatDong-small .ant-progress-text,
+.circle-device-hoatDong-small2 .ant-progress-text {
+    display: none;
+}
+
+.circle-device-hoatDong-small .ant-progress-inner,
+.circle-device-hoatDong-small2 .ant-progress-inner {
+    height: 60px !important;
+    width: 60px !important;
+}
+
+.name-number-device-dashboard {
+    position: absolute;
+    left: 11%;
+
+}
+
+.circle-device-hoatDong-small3 {
+    position: relative;
+    right: 91%;
+    top: -78%;
+
+}
+
+.circle-device-hoatDong-small3 .ant-progress-text {
+    display: none;
+}
+
+.circle-device-hoatDong-small3 .ant-progress-inner {
+    height: 40px !important;
+    width: 40px !important;
+}
+
+.nofitication-hide-dashboard {
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    left: -308%;
+    z-index: 1;
+    top: 114%;
+    border-radius: 10px;
+    background: var(--white, #FFF);
+    box-shadow: 2px 2px 15px 0px rgba(70, 64, 67, 0.10)
+}
