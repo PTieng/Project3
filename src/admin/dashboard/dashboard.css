@@ -281,10 +281,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: green;
     left: 8%;
     border-radius: 12px;
-    /* background: #FFF; */
     box-shadow: 2px 2px 15px 0px rgba(70, 64, 67, 0.10);
 }
 
@@ -454,7 +452,6 @@
     position: relative;
     top: -45px;
     left: 34%;
-    color: var(--green, #35C75A);
     font-family: Nunito;
     font-size: 16px;
     font-style: normal;

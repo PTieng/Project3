@@ -19,6 +19,8 @@ import cRed from "../../images/c-red.png";
 import { useNavigate } from "react-router-dom";
 import { UserType } from "../../redux/slice/UserSlice";
 import { UseAppSelector, useAppDispatch } from "../../redux/store/Store";
+import datePicker from "../../images/datePicker.png";
+
 const Dashboard = () => {
   const navigate = useNavigate();
 
@@ -191,7 +193,6 @@ const Dashboard = () => {
                 <p className="title">Tổng quan</p>
                 <div className="row-device">
                   <div className="col-number-device-dashboard">
-                    
                     <p className="number-device-dashboard">{totalDevice}</p>
                     <div className="row-img-device-dashboard">
                       <img
@@ -317,7 +318,13 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                <div className="row-calendar"></div>
+                <div className="row-calendar">
+                  <img
+                    src={datePicker}
+                    alt=""
+                    style={{ width: "110%", height: "113%" }}
+                  />
+                </div>
               </div>
             </div>
           </div>

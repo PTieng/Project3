@@ -8,7 +8,6 @@ import { UserType } from "../../../redux/slice/UserSlice";
 import { UseAppSelector, useAppDispatch } from "../../../redux/store/Store";
 import { fetchDataCapSo } from "../../../redux/slice/CapSoSlice";
 import format from "date-fns/format";
-
 type Props = {
   firstTitle: string;
   secondTitle: string;
@@ -117,7 +116,7 @@ const Header = (props: Props) => {
                         {format(new Date(item.dateCap), "HH:mm - dd/MM/yyyy")}
                       </span>
                     </p>
-                    <hr className="hr-noti"/>
+                    <hr className="hr-noti" />
                   </div>
                 ))}
               </div>
@@ -139,7 +138,7 @@ const Header = (props: Props) => {
             <p className="mb-2 hello-header">Xin chào</p>
             <p
               className="mb-4 ms-5 name-header"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", textAlign: "left" , left: "33%"}}
               onClick={handleInfor}
             >
               {account.name}

@@ -27,9 +27,6 @@ const DetailService = () => {
     setService(detail);
   }, [id, data]);
 
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
   };
@@ -75,14 +72,15 @@ const DetailService = () => {
 
   const [selectActive, setSelectActive] = useState<string>("Tất cả");
   const [keyWord, setKeyWord] = useState<string>("");
-  const filterActive = capSo.filter((item) => {
-    const isSelecteActive =
-      selectActive === "Tất cả" || item.active === selectActive;
 
-    const isKeyWord =
-      keyWord === "" || item.active.toLowerCase().includes(keyWord) || item.stt.toString().includes(keyWord);
-    return isSelecteActive && isKeyWord;
-  });
+  const filterCapSoForService = (serviceName: string) => {
+    return capSo.filter((item) => item.serviceName === serviceName);
+  };
+
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+    setSelectActive(value);
+  };
 
   return (
     <div>
@@ -246,7 +244,7 @@ const DetailService = () => {
                 <Table
                   columns={columns}
                   pagination={{ pageSize: 4 }}
-                  dataSource={filterNameCapSo}
+                  dataSource={filterCapSoForService(service?.name || "")}
                   bordered
                 />
               </div>

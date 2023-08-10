@@ -18,6 +18,8 @@ const AddCapSo = () => {
   const navigate = useNavigate();
   const service = UseAppSelector((state) => state.services.services);
 
+  const capSo = UseAppSelector((state) => state.capSo.capSo);
+
   const [selectedService, setSelectedService] = useState(null);
   const [selectedNguonCap, setSelectedNguonCap] = useState<string>("");
 
@@ -37,18 +39,17 @@ const AddCapSo = () => {
     return options[randomIndex];
   };
 
+  const [isBoxVisible, setIsBoxVisible] = useState(false);
+
+  const userLog = UseAppSelector((state) => state.userLog.userLog);
+
   const handleChangeSelect = async (value: any) => {
     setSelectedService(value);
-    const randomNguonCap = getRandomNguonCap();
-    setSelectedNguonCap(randomNguonCap);
+
     const selectedOptionIndex = service.findIndex((s) => s.name === value);
     const calculatedStt = 20100 + (selectedOptionIndex + 1) * 1;
     setStt(calculatedStt);
   };
-
-  const [isBoxVisible, setIsBoxVisible] = useState(false);
-
-  const userLog = UseAppSelector((state) => state.userLog.userLog);
 
   const handleAdd = async () => {
     if (!selectedService) {
@@ -61,9 +62,13 @@ const AddCapSo = () => {
     const randomIndex = Math.floor(Math.random() * randomActive.length);
     const random = randomActive[randomIndex];
 
+    const maxStt = capSo.reduce((max, capSo) => {
+      return capSo.stt > max ? capSo.stt : max;
+    }, 201000);
+
     const newCapSo = {
       serviceName: selectedService,
-      stt: Number(stt),
+      stt: maxStt + 1,
       active: random,
       dateCap: new Date().toISOString(),
       hsd: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
@@ -79,6 +84,7 @@ const AddCapSo = () => {
       setIsBoxVisible(true);
       message.success("Thêm cấp số thành công");
     }
+
     const newUserLog = {
       name: account.userName,
       time: new Date().toISOString(),
