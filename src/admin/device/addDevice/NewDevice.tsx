@@ -25,15 +25,17 @@ const NewDevice = () => {
   );
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const randomActive = Math.random() < 0.5 ? "Hoạt động" : "Ngưng hoạt động";
+  const randomConnect = Math.random() < 0.5 ? "Kết nối" : "Mất kết nối";
   const [data, setData] = useState({
     idTB: isUpdate ? (dataSelected ? dataSelected.idTB : "") : "",
     name: isUpdate ? dataSelected?.name || "" : "",
     ip: isUpdate ? dataSelected?.ip || "" : "",
-    active: "Hoạt động",
+    active: randomActive,
     type: isUpdate ? dataSelected?.type || "" : "",
     userName: isUpdate ? dataSelected?.userName || "" : "",
     password: isUpdate ? dataSelected?.password || "" : "",
-    connect: "Mất kết nối",
+    connect: randomConnect,
     usedService: isUpdate ? dataSelected?.usedService || [] : [],
   });
 
@@ -78,6 +80,7 @@ const NewDevice = () => {
   console.log(data);
 
   const userLog = UseAppSelector((state) => state.userLog.userLog);
+  const user = UseAppSelector((state) => state.users.users);
 
   const dataAccount = localStorage.getItem("account");
   const account: UserType = dataAccount ? JSON.parse(dataAccount) : {};
@@ -94,6 +97,19 @@ const NewDevice = () => {
         !data.ip
       ) {
         return message.error("Vui lòng nhập đầy đủ thông tin");
+      }
+      const existingUser = user.find(
+        (user) =>
+          user.userName === data.userName && user.password === data.password
+      );
+
+      if (!existingUser) {
+        return message.error("Tài khoản hoặc mật khẩu không chính xác");
+      } else if (
+        existingUser.userName === data.userName &&
+        existingUser.password !== data.password
+      ) {
+        return message.error("Mật khẩu không chính xác");
       }
 
       if (isUpdate) {

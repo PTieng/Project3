@@ -225,7 +225,7 @@ const AddService = () => {
               style={{ marginLeft: "10%" }}
               onClick={handleAddService}
             >
-              {isUpdate ? "Cập nhật " : "Thêm thiết bị"}
+              {isUpdate ? "Cập nhật " : "Thêm dịch vụ"}
             </button>
           </div>
         </div>

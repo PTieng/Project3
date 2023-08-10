@@ -43,6 +43,15 @@ const Dashboard = () => {
     (device) => device.active === "Ngưng hoạt động"
   ).length;
 
+  const percentHoatDongDevice = (
+    (activeDeviceCount / totalDevice) *
+    100
+  ).toFixed(1);
+  const percentNgungHoatDongDevice = (
+    (inactiveDeviceCount / totalDevice) *
+    100
+  ).toFixed(1);
+
   const service = UseAppSelector((state) => state.services.services);
   const totalService = service.length;
   const activeServiceCount = service.filter(
@@ -52,7 +61,17 @@ const Dashboard = () => {
     (service) => service.activeService === "Ngưng hoạt động"
   ).length;
 
+  const percentHoatDongService = (
+    (activeServiceCount / totalService) *
+    100
+  ).toFixed(1);
+  const percentNgungHoatDongService = (
+    (inactiveServiceCount / totalService) *
+    100
+  ).toFixed(1);
+
   const capSo = UseAppSelector((state) => state.capSo.capSo);
+  const countCapSoSTT = capSo.filter((capSo) => capSo.stt).length;
 
   const totalCapSo = capSo.length;
   const activeCapSoCount = capSo.filter(
@@ -65,11 +84,21 @@ const Dashboard = () => {
     (capSo) => capSo.active === "Bỏ qua"
   ).length;
 
-  const countCapSoSTT = capSo.filter((capSo) => capSo.stt).length;
+  const percentHoatDongCapSo = ((activeCapSoCount / totalCapSo) * 100).toFixed(
+    1
+  );
+  const percentNgungHoatDongCapSp = (
+    (inactiveCapSoCount / totalCapSo) *
+    100
+  ).toFixed(1);
+
+  const percentPassCapSo = ((passCapSoCount / totalCapSo) * 100).toFixed(1);
+
   const [showHide, setShowHide] = useState(false);
   const handleShow = () => {
     setShowHide(!showHide);
   };
+
   return (
     <div>
       <div className="background-dashboard">
@@ -238,7 +267,7 @@ const Dashboard = () => {
                       <div>
                         <Progress
                           type="circle"
-                          percent={50}
+                          percent={parseFloat(percentHoatDongDevice)}
                           className="circle-device-hoatDong"
                           style={{ height: "80px", width: "80px" }}
                           strokeColor="#FF7506"
@@ -247,7 +276,7 @@ const Dashboard = () => {
                           type="circle"
                           className="circle-device-hoatDong-small"
                           strokeColor="#7E7D88"
-                          percent={25}
+                          percent={parseFloat(percentNgungHoatDongDevice)}
                         />
                       </div>
 
@@ -287,7 +316,7 @@ const Dashboard = () => {
                       <div>
                         <Progress
                           type="circle"
-                          percent={50}
+                          percent={parseFloat(percentHoatDongService)}
                           className="circle-device-hoatDong"
                           style={{ height: "80px", width: "80px" }}
                         />
@@ -295,7 +324,7 @@ const Dashboard = () => {
                           type="circle"
                           className="circle-device-hoatDong-small"
                           strokeColor="#7E7D88"
-                          percent={25}
+                          percent={parseFloat(percentNgungHoatDongService)}
                         />
                       </div>
                       <div
@@ -342,7 +371,7 @@ const Dashboard = () => {
                       <div>
                         <Progress
                           type="circle"
-                          percent={50}
+                          percent={parseFloat(percentHoatDongCapSo)}
                           className="circle-device-hoatDong"
                           style={{ height: "80px", width: "80px" }}
                           strokeColor="#35C75A"
@@ -351,12 +380,12 @@ const Dashboard = () => {
                           type="circle"
                           className="circle-device-hoatDong-small2"
                           strokeColor="#7E7D88"
-                          percent={25}
+                          percent={parseFloat(percentNgungHoatDongCapSp)}
                         />
                         <Progress
                           type="circle"
                           className="circle-device-hoatDong-small3"
-                          percent={10}
+                          percent={parseFloat(percentPassCapSo)}
                           strokeColor="#F178B6"
                         />
                       </div>
@@ -425,11 +454,11 @@ const Dashboard = () => {
                 </div>
 
                 <div className="row-calendar">
-                  <img
+                  {/* <img
                     src={datePicker}
                     alt=""
-                    style={{ width: "110%", height: "113%" }}
-                  />
+                    className="img-calendar-dashboard"
+                  /> */}
                 </div>
               </div>
             </div>
