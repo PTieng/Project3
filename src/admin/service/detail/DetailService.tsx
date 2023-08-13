@@ -71,7 +71,7 @@ const DetailService = () => {
   };
 
   const [selectActive, setSelectActive] = useState<string>("Tất cả");
-  const [keyWord, setKeyWord] = useState<string>("");
+  const [keyWord, setKeyWord] = useState<string>(""); 
 
   const filterCapSoForService = (serviceName: string) => {
     return capSo.filter((item) => item.serviceName === serviceName);

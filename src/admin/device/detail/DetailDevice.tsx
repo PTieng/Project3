@@ -26,6 +26,8 @@ const DetailDevice = () => {
     navigate(`/admin/device/add/${id}`);
   };
 
+
+
   return (
     <div>
       <div className="background-detailDevice">
